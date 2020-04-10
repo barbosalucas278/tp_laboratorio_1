@@ -1,0 +1,163 @@
+/*
+ * func.c
+ *
+ *  Created on: 2 abr. 2020
+ *      Author: Lucas Barbosa
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+/*
+ * \brief Se utiliza para sumar 2 variables
+ * \param	dos variables enteras
+ * \return la suma de las mismas
+ * */
+int Sumar (int x, int y){
+	int r;
+	r = x + y;
+	return r;
+}
+
+/*
+ * \brief Se utiliza para restar 2 variables
+ * \param dos variables enteras
+ * \return la resta de las mismas
+ * */
+
+int Restar (int x, int y){
+	int r;
+	r = x - y;
+	return r;
+}
+
+/*
+ * \brief Se utiliza para dividir 2 variables
+ * \param dos variables enteras
+ * \return la division de las mismas
+ * */
+
+float Dividir (int x, int y){
+	float r;
+	if(y!=0){
+		r = (float)x / y;
+	}else{
+		r=0;
+	}
+	return r;
+}
+
+/*
+ * \brief Se utiliza para multiplicar 2 variables
+ * \param dos variables enteras
+ * \return el producto de las mismas
+ * */
+
+int Multiplicar (int x, int y){
+	int r;
+	r = x * y;
+	return r;
+}
+
+/*
+ * \brief Se utiliza para sacar el factorial de 2 variables
+ * \param dos variables enteras
+ * \return el factorial de las mismas
+ * */
+
+int Factorial (int x)
+{
+	int r = x;
+	int i;
+	for(i = 1; i<=x;++i)
+	{
+		r *= i;
+	}
+	return r;
+}
+/*
+ * \brief Se utiliza para sacar el factorial de 2 variables
+ * \param dos variables enteras
+ * \return el factorial de las mismas
+ * */
+
+static int esNumerica(char* cadena){
+	int ret = -1;
+	int i = 0;
+	if(cadena!=NULL)
+	{
+		while(cadena[i]!='\0')
+		{
+			if(cadena[i]<'0' || cadena[i]>'9')
+				break;
+				i++;
+		}
+		if (cadena[i] == '\0')
+			ret = 1;
+	}
+	return ret;
+}
+
+/*
+ * \brief Se utiliza para sacar el factorial de 2 variables
+ * \param dos variables enteras
+ * \return el factorial de las mismas
+ * */
+
+static int getInt(int* pResultado)
+{
+	int ret = -1 ;
+	char buffer[64];
+	fgets(buffer, sizeof(buffer),stdin);
+	buffer[strlen(buffer)-1] = '\0';
+	//FUNCION QUE VALIDA LA CADENA SEGÚN CRITERIO ESTABLECIDO
+	if(esNumerica(buffer))
+	{
+		*pResultado = atoi(buffer);  // <----- atoi() recibe cadena de caracteres y devuelve int. se usa con <stdlib.h>
+		ret = 1 ;
+	}
+
+	return ret;
+}
+
+/*
+ * \brief Se utiliza para sacar el factorial de 2 variables
+ * \param dos variables enteras
+ * \return el factorial de las mismas
+ * */
+
+int getNumero (int* pResultado, char* mensaje, char* mensajeError, int minimo, int maximo, int reintentos)
+{
+	int ret;
+	int num;
+
+	while(reintentos>0)
+	{
+		printf("%s",mensaje);
+		fflush(stdin);
+		if(getInt(&num)==1)  // si scanf =1 es porque pudo abrir la variable
+		{
+		if(num<=maximo && num>=minimo)
+			{
+			break;
+			}
+		}
+		reintentos--;
+		printf("%s",mensajeError);
+	}
+	if(reintentos==0)
+	{
+		ret = -1;
+	}
+	else
+	{
+		*pResultado = num;  //se asigna en la direccion de memoria del parametro el valor del numero ingresado.
+		ret = 0;
+	}
+	return ret;
+}
+
+
+
+
