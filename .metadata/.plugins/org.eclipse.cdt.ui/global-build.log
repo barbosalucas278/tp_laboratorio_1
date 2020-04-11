@@ -1110,3 +1110,292 @@ gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o"
 Info: Internal Builder is used for build
 gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
 gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+14:45:50 **** Rebuild of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+14:52:19 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+..\src\utn-tp1.c: In function 'main':
+..\src\utn-tp1.c:57:17: error: too few arguments to function 'Restar'
+   57 |     laRestaEs = Restar(a,b);
+      |                 ^~~~~~
+In file included from ..\src\utn-tp1.c:12:
+..\src\func.h:18:5: note: declared here
+   18 | int Restar (int x, int y, int* pResultado);
+      |     ^~~~~~
+..\src\utn-tp1.c:58:20: error: too few arguments to function 'Dividir'
+   58 |     laDivisionEs = Dividir(a,b);
+      |                    ^~~~~~~
+In file included from ..\src\utn-tp1.c:12:
+..\src\func.h:20:7: note: declared here
+   20 | float Dividir (int x, int y, float* pResultado);
+      |       ^~~~~~~
+..\src\utn-tp1.c:59:20: error: too few arguments to function 'Multiplicar'
+   59 |     elProductoEs = Multiplicar(a,b);
+      |                    ^~~~~~~~~~~
+In file included from ..\src\utn-tp1.c:12:
+..\src\func.h:22:5: note: declared here
+   22 | int Multiplicar (int x, int y, int* pRestulado);
+      |     ^~~~~~~~~~~
+..\src\utn-tp1.c:60:20: error: too few arguments to function 'Factorial'
+   60 |     elFactorialA = Factorial(a);
+      |                    ^~~~~~~~~
+In file included from ..\src\utn-tp1.c:12:
+..\src\func.h:24:8: note: declared here
+   24 | double Factorial (int x, double* pResultado);
+      |        ^~~~~~~~~
+..\src\utn-tp1.c:61:20: error: too few arguments to function 'Factorial'
+   61 |     elFactorialB = Factorial(b);
+      |                    ^~~~~~~~~
+In file included from ..\src\utn-tp1.c:12:
+..\src\func.h:24:8: note: declared here
+   24 | double Factorial (int x, double* pResultado);
+      |        ^~~~~~~~~
+14:52:24 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+..\src\utn-tp1.c: In function 'main':
+..\src\utn-tp1.c:57:17: error: too few arguments to function 'Restar'
+   57 |     laRestaEs = Restar(a,b);
+      |                 ^~~~~~
+In file included from ..\src\utn-tp1.c:12:
+..\src\func.h:18:5: note: declared here
+   18 | int Restar (int x, int y, int* pResultado);
+      |     ^~~~~~
+..\src\utn-tp1.c:58:20: error: too few arguments to function 'Dividir'
+   58 |     laDivisionEs = Dividir(a,b);
+      |                    ^~~~~~~
+In file included from ..\src\utn-tp1.c:12:
+..\src\func.h:20:7: note: declared here
+   20 | float Dividir (int x, int y, float* pResultado);
+      |       ^~~~~~~
+..\src\utn-tp1.c:59:20: error: too few arguments to function 'Multiplicar'
+   59 |     elProductoEs = Multiplicar(a,b);
+      |                    ^~~~~~~~~~~
+In file included from ..\src\utn-tp1.c:12:
+..\src\func.h:22:5: note: declared here
+   22 | int Multiplicar (int x, int y, int* pRestulado);
+      |     ^~~~~~~~~~~
+..\src\utn-tp1.c:60:20: error: too few arguments to function 'Factorial'
+   60 |     elFactorialA = Factorial(a);
+      |                    ^~~~~~~~~
+In file included from ..\src\utn-tp1.c:12:
+..\src\func.h:24:8: note: declared here
+   24 | double Factorial (int x, double* pResultado);
+      |        ^~~~~~~~~
+..\src\utn-tp1.c:61:20: error: too few arguments to function 'Factorial'
+   61 |     elFactorialB = Factorial(b);
+      |                    ^~~~~~~~~
+In file included from ..\src\utn-tp1.c:12:
+..\src\func.h:24:8: note: declared here
+   24 | double Factorial (int x, double* pResultado);
+      |        ^~~~~~~~~
+22:59:14 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+..\src\utn-tp1.c: In function 'main':
+..\src\utn-tp1.c:45:22: error: 'laMultiplicacionEs' undeclared (first use in this function)
+   45 |     Multiplicar(a,b,&laMultiplicacionEs);
+      |                      ^~~~~~~~~~~~~~~~~~
+..\src\utn-tp1.c:45:22: note: each undeclared identifier is reported only once for each function it appears in
+23:03:09 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+..\src\utn-tp1.c: In function 'main':
+..\src\utn-tp1.c:45:22: error: 'laMultiplicacionEs' undeclared (first use in this function)
+   45 |     Multiplicar(a,b,&laMultiplicacionEs);
+      |                      ^~~~~~~~~~~~~~~~~~
+..\src\utn-tp1.c:45:22: note: each undeclared identifier is reported only once for each function it appears in
+23:03:32 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+23:04:54 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+23:06:15 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+23:07:28 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c: In function 'Factorial':
+..\src\func.c:85:21: warning: format '%d' expects argument of type 'int', but argument 2 has type 'int *' [-Wformat=]
+   85 |   printf(" [DEBUG] %d",&i);
+      |                    ~^  ~~
+      |                     |  |
+      |                     |  int *
+      |                     int
+      |                    %n
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: cannot open output file utn-tp1.exe: Permission denied
+collect2.exe: error: ld returned 1 exit status
+23:07:31 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+23:08:39 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c: In function 'Factorial':
+..\src\func.c:85:21: warning: format '%d' expects argument of type 'int', but argument 2 has type 'int *' [-Wformat=]
+   85 |   printf(" [DEBUG] %d",&i);
+      |                    ~^  ~~
+      |                     |  |
+      |                     |  int *
+      |                     int
+      |                    %n
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+23:09:13 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+23:10:07 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+..\src\utn-tp1.c: In function 'main':
+..\src\utn-tp1.c:58:40: warning: format '%f' expects argument of type 'double', but argument 2 has type 'int' [-Wformat=]
+   58 |     printf("\nEl factorial de A es: %.2f ",elFactorialA);
+      |                                     ~~~^   ~~~~~~~~~~~~
+      |                                        |   |
+      |                                        |   int
+      |                                        double
+      |                                     %.2d
+..\src\utn-tp1.c:59:40: warning: format '%f' expects argument of type 'double', but argument 2 has type 'int' [-Wformat=]
+   59 |     printf("\nEl factorial de B es: %.2f \n",elFactorialB);
+      |                                     ~~~^     ~~~~~~~~~~~~
+      |                                        |     |
+      |                                        |     int
+      |                                        double
+      |                                     %.2d
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+23:10:34 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+23:17:15 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+..\src\utn-tp1.c: In function 'main':
+..\src\utn-tp1.c:26:8: warning: comparison between pointer and integer
+   26 |   if(a != NULL && b != NULL)
+      |        ^~
+..\src\utn-tp1.c:26:21: warning: comparison between pointer and integer
+   26 |   if(a != NULL && b != NULL)
+      |                     ^~
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+23:22:59 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+23:35:50 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+..\src\utn-tp1.c: In function 'main':
+..\src\utn-tp1.c:61:3: warning: implicit declaration of function 'mostrarValoresInt' [-Wimplicit-function-declaration]
+   61 |   mostrarValoresInt(&a,&b);
+      |   ^~~~~~~~~~~~~~~~~
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: src\utn-tp1.o: in function `main':
+C:\Users\pocho\Desktop\TRABAJOS_UTN\tp_laboratorio_1\utn-tp1\Debug/../src/utn-tp1.c:61: undefined reference to `mostrarValoresInt'
+collect2.exe: error: ld returned 1 exit status
+23:36:13 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+..\src\utn-tp1.c: In function 'main':
+..\src\utn-tp1.c:61:3: warning: implicit declaration of function 'mostrarDosInt' [-Wimplicit-function-declaration]
+   61 |   mostrarDosInt(&a,&b);
+      |   ^~~~~~~~~~~~~
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: src\utn-tp1.o: in function `main':
+C:\Users\pocho\Desktop\TRABAJOS_UTN\tp_laboratorio_1\utn-tp1\Debug/../src/utn-tp1.c:61: undefined reference to `mostrarDosInt'
+collect2.exe: error: ld returned 1 exit status
+23:36:31 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+23:46:24 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c: In function 'mostrarDosValores':
+..\src\func.c:21:13: warning: comparison between pointer and integer
+   21 |   if((pVal1 > MIN && pVal1 < MAX)&&(pVal2>MIN && pVal2 < MAX))
+      |             ^
+..\src\func.c:21:28: warning: comparison between pointer and integer
+   21 |   if((pVal1 > MIN && pVal1 < MAX)&&(pVal2>MIN && pVal2 < MAX))
+      |                            ^
+..\src\func.c:21:42: warning: comparison between pointer and integer
+   21 |   if((pVal1 > MIN && pVal1 < MAX)&&(pVal2>MIN && pVal2 < MAX))
+      |                                          ^
+..\src\func.c:21:56: warning: comparison between pointer and integer
+   21 |   if((pVal1 > MIN && pVal1 < MAX)&&(pVal2>MIN && pVal2 < MAX))
+      |                                                        ^
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+23:48:28 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+23:56:09 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c: In function 'Factorial':
+..\src\func.c:100:17: warning: comparison between pointer and integer
+  100 |  if(*pResultado != NULL)
+      |                 ^~
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+23:57:09 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+00:02:36 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+00:17:24 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c: In function 'Factorial':
+..\src\func.c:105:19: error: expected ')' before numeric constant
+  105 |   buffer = i *(i++1);
+      |               ~   ^
+      |                   )
+..\src\func.c:105:17: warning: operation on 'i' may be undefined [-Wsequence-point]
+  105 |   buffer = i *(i++1);
+      |               ~~^~~
+..\src\func.c:99:6: warning: variable 'buffer' set but not used [-Wunused-but-set-variable]
+   99 |  int buffer;
+      |      ^~~~~~
+00:17:43 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c: In function 'Factorial':
+..\src\func.c:99:6: warning: variable 'buffer' set but not used [-Wunused-but-set-variable]
+   99 |  int buffer;
+      |      ^~~~~~
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+00:17:54 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1

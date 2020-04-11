@@ -3,15 +3,39 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define MIN -32768
+#define MAX 32768
+/*
+ * \brief Se utiliza para imprimir en pantalla dos valores dentro del rango establecido.
+ * \param	dos punteros de variables enteras
+ * \return 0 si las imprime -1 si no logra imprimirlas
+ * */
 
+int mostrarDosValores (int* pVal1, int* pVal2)
+{
+	int r=-1;
+	if(pVal1 != NULL && pVal2 != NULL)
+	{
+		if((*pVal1 > MIN && *pVal1 < MAX )&&(* pVal2 > MIN && *pVal2 < MAX))
+		{
+		printf("A = %d   B = %d",*pVal1, *pVal2);
+		r=0;
+		}
+	}
+	return r;
+}
 /*
  * \brief Se utiliza para sumar 2 variables
  * \param	dos variables enteras
  * \return la suma de las mismas
  * */
-int Sumar (int x, int y){
-	int r;
-	r = x + y;
+int Sumar (int x, int y, int* pResultado){
+	int r=0;
+	if(pResultado != NULL)
+	{
+		*pResultado = x + y;
+		r=1;
+	}
 	return r;
 }
 
@@ -21,9 +45,13 @@ int Sumar (int x, int y){
  * \return la resta de las mismas
  * */
 
-int Restar (int x, int y){
-	int r;
-	r = x - y;
+int Restar (int x, int y, int* pResultado){
+	int r=0;
+	if(pResultado != NULL)
+	{
+	*pResultado  = x - y;
+	r=1;
+	}
 	return r;
 }
 
@@ -33,10 +61,11 @@ int Restar (int x, int y){
  * \return la division de las mismas
  * */
 
-float Dividir (int x, int y){
+int Dividir (int x, int y, float* pResultado){
 	float r=0;
-	if(y!=0){
-		r = (float)x / y;
+	if(y!=0 && pResultado!=NULL){
+		*pResultado = (float)x / y;
+		r=1;
 	}
 	return r;
 }
@@ -47,9 +76,14 @@ float Dividir (int x, int y){
  * \return el producto de las mismas
  * */
 
-int Multiplicar (int x, int y){
-	int r;
-	r = x * y;
+int Multiplicar (int x, int y, int* pResultado)
+{
+	int r=0;
+	if(pResultado != NULL)
+	{
+	*pResultado = x * y;
+	r=1;
+	}
 	return r;
 }
 
@@ -59,13 +93,20 @@ int Multiplicar (int x, int y){
  * \return el factorial de las mismas
  * */
 
-double Factorial (int x)
+int Factorial (int x, int* pResultado)
 {
-	int r = x;
+	int r = -1;
+	int buffer;
 	int i;
-	for(i = 1; i<=x;++i)
+	if(pResultado != NULL)
 	{
-		r *= i;
+	for(i = 1; i<=x;i++)
+	{
+		buffer = i *(i+1);
+
+	}
+	*pResultado = buffer;
+	r=1;
 	}
 	return r;
 }
@@ -119,7 +160,8 @@ static int getInt(int* pResultado)
  * \param pResultado es la direccion de memoria de la variable numero en el main.
  * \param mensaje es el mensaje que le queremos mostrar al usuario.
  * \param mensajeError es el mensaje que le queremos mostrar en caso de algun error
- * \param minimo, maximo son los valores entre los que se tiene que encontrar el valor ingrsado
+ * \param minimo
+ * \param maximo son los valores entre los que se tiene que encontrar el valor ingrsado
  * \param reintentos son la cantidad de reintentos tras ocurrirse un error.
  * \return -1 si se quedo sin intentos 0 si la funcion fue procesada correctamente, agregando el numero ingresado a la direccion de memoria
  * 				del puntero.

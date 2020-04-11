@@ -20,24 +20,9 @@ int main() {
 	int laRestaEs;
 	float laDivisionEs;
 	int elProductoEs;
-	double elFactorialA;
-	double elFactorialB;
-	int flag=-1;
-
+	int elFactorialA;
+	int elFactorialB;
 	do{
-		switch(flag)
-		{
-			case -1:
-				break;
-			case 0:
-				printf(" A = %d\n",a);
-				printf(" B = %d\n",b);
-				break;
-			case 1:
-				printf(" A = %d\n",a);
-				break;
-		}
-
 		while(getNumero(&option,"\n¿Qué desea ahacer?\nIngrese una opcion: \n1. Ingrese número A\n2. Ingrese número B\n3. Calcular todas las operaciones\n4. Resultados\n5. Salir\n","ERROR, opcion invalida\n",1,5,3))
 		{
 			printf("Vuelva a intentarlo nuevamente");
@@ -45,20 +30,18 @@ int main() {
 
 		switch(option){
 			case 1:
-				getNumero(&a,"A =\n","Número invalido\n",-32768,32768,2);
-				flag = 1;
+				getNumero(&a,"A =\n","Número invalido\n",MIN,MAX,2);
 				break;
 			case 2:
-				getNumero(&b,"B =\n","Número invalido\n",-32768,32768,2);
-				flag=0;
+				getNumero(&b,"B =\n","Número invalido\n",MIN,MAX,2);
 				break;
 			case 3:
-				laSumaEs = Sumar(a,b);
-				laRestaEs = Restar(a,b);
-				laDivisionEs = Dividir(a,b);
-				elProductoEs = Multiplicar(a,b);
-				elFactorialA = Factorial(a);
-				elFactorialB = Factorial(b);
+				Sumar(a,b,&laSumaEs);
+				Restar(a,b,&laRestaEs);
+				Dividir(a,b,&laDivisionEs);
+				Multiplicar(a,b,&elProductoEs);
+				Factorial(a,&elFactorialA);
+				Factorial(b,&elFactorialB);
 				break;
 			case 4:
 				printf("\nLa suma de A y B es: %d",laSumaEs);
@@ -69,12 +52,13 @@ int main() {
 					printf("\nLa division de A por B es: %.2f",laDivisionEs);
 				}
 				printf("\nEl producto de A con B es: %d",elProductoEs);
-				printf("\nEl factorial de A es: %.2f ",elFactorialA);
-				printf("\nEl factorial de B es: %.2f \n",elFactorialB);
+				printf("\nEl factorial de A es: %d ",elFactorialA);
+				printf("\nEl factorial de B es: %d \n",elFactorialB);
 			break;
 			case 5:
 				break;
 			}
+		mostrarDosValores(&a,&b);
 		}while(option!=5);
 
 
