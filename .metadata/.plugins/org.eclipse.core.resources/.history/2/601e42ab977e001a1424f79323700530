@@ -9,7 +9,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "func.h"
 
 int main() {
@@ -24,13 +23,17 @@ int main() {
 	int elFactorialA;
 	int elFactorialB;
 	do{
-		getNumber(&option,"\n¿Qué desea ahacer?\nIngrese una opcion: \n1. Ingrese número A\n2. Ingrese número B\n3. Calcular todas las operaciones\n4. Resultados\n5. Salir\n","ERROR, opcion invalida\n",1,5,3);
+		while(getNumero(&option,"\n¿Qué desea ahacer?\nIngrese una opcion: \n1. Ingrese número A\n2. Ingrese número B\n3. Calcular todas las operaciones\n4. Resultados\n5. Salir\n","ERROR, opcion invalida\n",1,5,3))
+		{
+			printf("Vuelva a intentarlo nuevamente");
+		}
+
 		switch(option){
 			case 1:
-				getNumber(&a,"A =\n","Número invalido\n",MIN,MAX,2);
+				getNumero(&a,"A =\n","Número invalido\n",MIN,MAX,2);
 				break;
 			case 2:
-				getNumber(&b,"B =\n","Número invalido\n",MIN,MAX,2);
+				getNumero(&b,"B =\n","Número invalido\n",MIN,MAX,2);
 				break;
 			case 3:
 				Sumar(a,b,&laSumaEs);

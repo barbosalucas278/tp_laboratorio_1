@@ -18,7 +18,7 @@ int Sumar (int x, int y, int* pResultado);
 
 int Restar (int x, int y, int* pResultado);
 
-int Dividir (int x, int y, float* pResultado);
+float Dividir (int x, int y, float* pResultado);
 
 int Multiplicar (int x, int y, int* pRestulado);
 

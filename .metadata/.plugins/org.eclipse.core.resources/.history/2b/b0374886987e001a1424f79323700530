@@ -121,19 +121,22 @@ int isNumber(char *cadena) {
 	int i;
 	if (cadena != NULL) {
 		for (i = 0; cadena[i] != '\0'; i++) {
-			if (i == 0 && cadena[i] == '-') { //se acepta el - de los negativos
+			if (i == 0 && cadena[i] == '-') {
 				continue;
 			}
-			if(cadena[i]>='0' && cadena[i] <='9'){ //solo número
+			if(cadena[i]>='0' && cadena[i] <='9'){
 				continue;
 			}
-			if ((cadena[i] <= '~' && cadena[i] >= ':')|| (cadena[i]<='/' && cadena[i]>='!')) //lo que hice fue poner todos los caracteres de la tabla ASCII como invalidos
+			if ((cadena[i] <= '~' && cadena[i] >= ':')|| (cadena[i]<='/' && cadena[i]>='!')) //lo que hice fue poner como invalidos
 			{
 				break;
 			}
 		}
 		if (cadena[i] == '\0') {
 			ret = 1;
+			printf("es correcta\n");
+		} else {
+			printf("Es incorrecta\n");
 		}
 	}
 	return ret;

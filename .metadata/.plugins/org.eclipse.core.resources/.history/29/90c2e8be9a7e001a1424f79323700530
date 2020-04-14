@@ -15,8 +15,8 @@
 int main() {
 	setbuf(stdout, NULL);
 	int option;
-	int a;
-	int b;
+	long a;
+	long b;
 	int laSumaEs;
 	int laRestaEs;
 	float laDivisionEs;

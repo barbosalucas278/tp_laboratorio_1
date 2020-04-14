@@ -170,8 +170,8 @@ int getInt(int *pResultado) {
  *
  */
 
-int getNumber(int *pResultado, char *mensaje, char *mensajeError, int min,
-		int max, int reintentos) {
+int getNumber(long *pResultado, char *mensaje, char *mensajeError, long min,
+		long max, int reintentos) {
 	int ret=0;
 	int num;
 	if (pResultado != NULL && mensaje != NULL && mensajeError != NULL
