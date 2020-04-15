@@ -7,8 +7,10 @@
 
 #ifndef FUNC_H_
 #define FUNC_H_
-#define MIN -2147483647
-#define MAX 2147483647
+#define MIN -99999999
+#define MAX 99999999
+#define MIN_LONG -2147483647
+#define MAX_LONG 2147483647
 #define MAX_ARRAY_CHAR 4068
 
 #endif /* FUNC_H_ */
@@ -28,3 +30,4 @@ int getNumber (long* pResultado, char* mensaje, char* mensajeError, long min, lo
 int getInt (long* pResultado);
 int isNumber (char* cadena);
 
+int mostrarDosValores (long* pVal1, long* pVal2);

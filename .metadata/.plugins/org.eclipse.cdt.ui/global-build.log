@@ -1522,3 +1522,444 @@ gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c"
 gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
 gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
 Info: Nothing to build for utn-tp1
+19:03:12 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c: In function 'mostrarDosValores':
+..\src\func.c:20:16: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat=]
+   20 |   printf("A = %d   B = %d",*pVal1, *pVal2);
+      |               ~^           ~~~~~~
+      |                |           |
+      |                int         long int
+      |               %ld
+..\src\func.c:20:25: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long int' [-Wformat=]
+   20 |   printf("A = %d   B = %d",*pVal1, *pVal2);
+      |                        ~^          ~~~~~~
+      |                         |          |
+      |                         int        long int
+      |                        %ld
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+..\src\utn-tp1.c: In function 'main':
+..\src\utn-tp1.c:27:13: warning: passing argument 1 of 'getNumber' from incompatible pointer type [-Wincompatible-pointer-types]
+   27 |   getNumber(&option,"\n¿Qué desea ahacer?\nIngrese una opcion: \n1. Ingrese número A\n2. Ingrese número B\n3. Calcular todas las operaciones\n4. Resultados\n5. Salir\n","ERROR, opcion invalida\n",1,5,3);
+      |             ^~~~~~~
+      |             |
+      |             int *
+In file included from ..\src\utn-tp1.c:13:
+..\src\func.h:27:22: note: expected 'long int *' but argument is of type 'int *'
+   27 | int getNumber (long* pResultado, char* mensaje, char* mensajeError, long min, long max, int reintentos);
+      |                ~~~~~~^~~~~~~~~~
+..\src\utn-tp1.c:44:37: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat=]
+   44 |     printf("\nLa suma de A y B es: %d",laSumaEs);
+      |                                    ~^  ~~~~~~~~
+      |                                     |  |
+      |                                     |  long int
+      |                                     int
+      |                                    %ld
+..\src\utn-tp1.c:45:41: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat=]
+   45 |     printf("\nLa resta entre A y B es: %d",laRestaEs);
+      |                                        ~^  ~~~~~~~~~
+      |                                         |  |
+      |                                         |  long int
+      |                                         int
+      |                                        %ld
+..\src\utn-tp1.c:51:43: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat=]
+   51 |     printf("\nEl producto de A con B es: %d",elProductoEs);
+      |                                          ~^  ~~~~~~~~~~~~
+      |                                           |  |
+      |                                           |  long int
+      |                                           int
+      |                                          %ld
+..\src\utn-tp1.c:52:38: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat=]
+   52 |     printf("\nEl factorial de A es: %d ",elFactorialA);
+      |                                     ~^   ~~~~~~~~~~~~
+      |                                      |   |
+      |                                      int long int
+      |                                     %ld
+..\src\utn-tp1.c:53:38: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat=]
+   53 |     printf("\nEl factorial de B es: %d \n",elFactorialB);
+      |                                     ~^     ~~~~~~~~~~~~
+      |                                      |     |
+      |                                      int   long int
+      |                                     %ld
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+19:03:41 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+Info: Nothing to build for utn-tp1
+19:04:58 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+..\src\utn-tp1.c: In function 'main':
+..\src\utn-tp1.c:27:13: warning: passing argument 1 of 'getNumber' from incompatible pointer type [-Wincompatible-pointer-types]
+   27 |   getNumber(&option,"\n¿Qué desea ahacer?\nIngrese una opcion: \n1. Ingrese número A\n2. Ingrese número B\n3. Calcular todas las operaciones\n4. Resultados\n5. Salir\n","ERROR, opcion invalida\n",1,5,3);
+      |             ^~~~~~~
+      |             |
+      |             int *
+In file included from ..\src\utn-tp1.c:13:
+..\src\func.h:27:22: note: expected 'long int *' but argument is of type 'int *'
+   27 | int getNumber (long* pResultado, char* mensaje, char* mensajeError, long min, long max, int reintentos);
+      |                ~~~~~~^~~~~~~~~~
+..\src\utn-tp1.c:44:37: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat=]
+   44 |     printf("\nLa suma de A y B es: %d",laSumaEs);
+      |                                    ~^  ~~~~~~~~
+      |                                     |  |
+      |                                     |  long int
+      |                                     int
+      |                                    %ld
+..\src\utn-tp1.c:45:41: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat=]
+   45 |     printf("\nLa resta entre A y B es: %d",laRestaEs);
+      |                                        ~^  ~~~~~~~~~
+      |                                         |  |
+      |                                         |  long int
+      |                                         int
+      |                                        %ld
+..\src\utn-tp1.c:51:43: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat=]
+   51 |     printf("\nEl producto de A con B es: %d",elProductoEs);
+      |                                          ~^  ~~~~~~~~~~~~
+      |                                           |  |
+      |                                           |  long int
+      |                                           int
+      |                                          %ld
+..\src\utn-tp1.c:52:38: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat=]
+   52 |     printf("\nEl factorial de A es: %d ",elFactorialA);
+      |                                     ~^   ~~~~~~~~~~~~
+      |                                      |   |
+      |                                      int long int
+      |                                     %ld
+..\src\utn-tp1.c:53:38: warning: format '%d' expects argument of type 'int', but argument 2 has type 'long int' [-Wformat=]
+   53 |     printf("\nEl factorial de B es: %d \n",elFactorialB);
+      |                                     ~^     ~~~~~~~~~~~~
+      |                                      |     |
+      |                                      int   long int
+      |                                     %ld
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+19:05:36 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+Info: Nothing to build for utn-tp1
+Info: Nothing to build for utn-tp1
+19:13:19 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+19:14:56 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: cannot open output file utn-tp1.exe: Permission denied
+collect2.exe: error: ld returned 1 exit status
+19:14:58 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+19:15:47 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: cannot open output file utn-tp1.exe: Permission denied
+collect2.exe: error: ld returned 1 exit status
+19:15:47 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+19:19:11 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+Info: Nothing to build for utn-tp1
+19:20:41 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c:95:5: error: conflicting types for 'Factorial'
+   95 | int Factorial (long x, double* pResultado)
+      |     ^~~~~~~~~
+In file included from ..\src\func.c:6:
+..\src\func.h:25:5: note: previous declaration of 'Factorial' was here
+   25 | int Factorial (long x, long* pResultado);
+      |     ^~~~~~~~~
+19:20:58 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+..\src\utn-tp1.c: In function 'main':
+..\src\utn-tp1.c:52:39: warning: format '%ld' expects argument of type 'long int', but argument 2 has type 'double' [-Wformat=]
+   52 |     printf("\nEl factorial de A es: %ld ",elFactorialA);
+      |                                     ~~^   ~~~~~~~~~~~~
+      |                                       |   |
+      |                                       |   double
+      |                                       long int
+      |                                     %f
+..\src\utn-tp1.c:53:39: warning: format '%ld' expects argument of type 'long int', but argument 2 has type 'double' [-Wformat=]
+   53 |     printf("\nEl factorial de B es: %ld \n",elFactorialB);
+      |                                     ~~^     ~~~~~~~~~~~~
+      |                                       |     |
+      |                                       |     double
+      |                                       long int
+      |                                     %f
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+19:21:26 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+19:22:34 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: cannot open output file utn-tp1.exe: Permission denied
+collect2.exe: error: ld returned 1 exit status
+19:22:36 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+Info: Nothing to build for utn-tp1
+19:24:59 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c: In function 'mostrarDosValores':
+..\src\func.c:18:13: warning: comparison between pointer and integer
+   18 |   if((pVal1 > MIN && pVal1 < MAX )&&( pVal2 > MIN && pVal2 < MAX))
+      |             ^
+..\src\func.c:18:28: warning: comparison between pointer and integer
+   18 |   if((pVal1 > MIN && pVal1 < MAX )&&( pVal2 > MIN && pVal2 < MAX))
+      |                            ^
+..\src\func.c:18:45: warning: comparison between pointer and integer
+   18 |   if((pVal1 > MIN && pVal1 < MAX )&&( pVal2 > MIN && pVal2 < MAX))
+      |                                             ^
+..\src\func.c:18:60: warning: comparison between pointer and integer
+   18 |   if((pVal1 > MIN && pVal1 < MAX )&&( pVal2 > MIN && pVal2 < MAX))
+      |                                                            ^
+..\src\func.c:20:17: warning: format '%ld' expects argument of type 'long int', but argument 2 has type 'long int *' [-Wformat=]
+   20 |   printf("A = %ld   B = %ld",pVal1, pVal2);
+      |               ~~^            ~~~~~
+      |                 |            |
+      |                 long int     long int *
+      |               %ln
+..\src\func.c:20:27: warning: format '%ld' expects argument of type 'long int', but argument 3 has type 'long int *' [-Wformat=]
+   20 |   printf("A = %ld   B = %ld",pVal1, pVal2);
+      |                         ~~^         ~~~~~
+      |                           |         |
+      |                           long int  long int *
+      |                         %ln
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+19:25:24 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c: In function 'mostrarDosValores':
+..\src\func.c:20:17: warning: format '%ld' expects argument of type 'long int', but argument 2 has type 'long int *' [-Wformat=]
+   20 |   printf("A = %ld   B = %ld",pVal1, pVal2);
+      |               ~~^            ~~~~~
+      |                 |            |
+      |                 long int     long int *
+      |               %ln
+..\src\func.c:20:27: warning: format '%ld' expects argument of type 'long int', but argument 3 has type 'long int *' [-Wformat=]
+   20 |   printf("A = %ld   B = %ld",pVal1, pVal2);
+      |                         ~~^         ~~~~~
+      |                           |         |
+      |                           long int  long int *
+      |                         %ln
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+19:25:45 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+Info: Nothing to build for utn-tp1
+20:09:19 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+20:12:33 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+20:15:21 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c:13:5: error: conflicting types for 'mostrarDosValores'
+   13 | int mostrarDosValores (long pVal1, long pVal2)
+      |     ^~~~~~~~~~~~~~~~~
+In file included from ..\src\func.c:6:
+..\src\func.h:31:5: note: previous declaration of 'mostrarDosValores' was here
+   31 | int mostrarDosValores (long* pVal1, long* pVal2);
+      |     ^~~~~~~~~~~~~~~~~
+..\src\func.c: In function 'mostrarDosValores':
+..\src\func.c:16:11: warning: comparison between pointer and integer
+   16 |  if(pVal1 != NULL && pVal2 != NULL)
+      |           ^~
+..\src\func.c:16:28: warning: comparison between pointer and integer
+   16 |  if(pVal1 != NULL && pVal2 != NULL)
+      |                            ^~
+21:19:01 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+..\src\utn-tp1.c: In function 'main':
+..\src\utn-tp1.c:58:21: warning: passing argument 1 of 'mostrarDosValores' makes pointer from integer without a cast [-Wint-conversion]
+   58 |   mostrarDosValores(a,b);
+      |                     ^
+      |                     |
+      |                     long int
+In file included from ..\src\utn-tp1.c:13:
+..\src\func.h:31:30: note: expected 'long int *' but argument is of type 'long int'
+   31 | int mostrarDosValores (long* pVal1, long* pVal2);
+      |                        ~~~~~~^~~~~
+..\src\utn-tp1.c:58:23: warning: passing argument 2 of 'mostrarDosValores' makes pointer from integer without a cast [-Wint-conversion]
+   58 |   mostrarDosValores(a,b);
+      |                       ^
+      |                       |
+      |                       long int
+In file included from ..\src\utn-tp1.c:13:
+..\src\func.h:31:43: note: expected 'long int *' but argument is of type 'long int'
+   31 | int mostrarDosValores (long* pVal1, long* pVal2);
+      |                                     ~~~~~~^~~~~
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c:13:5: error: conflicting types for 'mostrarDosValores'
+   13 | int mostrarDosValores (long pVal1, long pVal2)
+      |     ^~~~~~~~~~~~~~~~~
+In file included from ..\src\func.c:6:
+..\src\func.h:31:5: note: previous declaration of 'mostrarDosValores' was here
+   31 | int mostrarDosValores (long* pVal1, long* pVal2);
+      |     ^~~~~~~~~~~~~~~~~
+..\src\func.c: In function 'mostrarDosValores':
+..\src\func.c:16:11: warning: comparison between pointer and integer
+   16 |  if(pVal1 != NULL && pVal2 != NULL)
+      |           ^~
+..\src\func.c:16:28: warning: comparison between pointer and integer
+   16 |  if(pVal1 != NULL && pVal2 != NULL)
+      |                            ^~
+21:19:20 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c: In function 'mostrarDosValores':
+..\src\func.c:16:11: warning: comparison between pointer and integer
+   16 |  if(pVal1 != NULL && pVal2 != NULL)
+      |           ^~
+..\src\func.c:16:28: warning: comparison between pointer and integer
+   16 |  if(pVal1 != NULL && pVal2 != NULL)
+      |                            ^~
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+21:19:42 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+21:21:42 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c:13:5: error: conflicting types for 'mostrarDosValores'
+   13 | int mostrarDosValores (long* pVal1, long* pVal2)
+      |     ^~~~~~~~~~~~~~~~~
+In file included from ..\src\func.c:6:
+..\src\func.h:31:5: note: previous declaration of 'mostrarDosValores' was here
+   31 | int mostrarDosValores (long pVal1, long pVal2);
+      |     ^~~~~~~~~~~~~~~~~
+..\src\func.c: In function 'mostrarDosValores':
+..\src\func.c:21:17: warning: format '%ld' expects argument of type 'long int', but argument 2 has type 'long int *' [-Wformat=]
+   21 |   printf("A = %ld   B = %ld",pVal1, pVal2);
+      |               ~~^            ~~~~~
+      |                 |            |
+      |                 long int     long int *
+      |               %ln
+..\src\func.c:21:27: warning: format '%ld' expects argument of type 'long int', but argument 3 has type 'long int *' [-Wformat=]
+   21 |   printf("A = %ld   B = %ld",pVal1, pVal2);
+      |                         ~~^         ~~~~~
+      |                           |         |
+      |                           long int  long int *
+      |                         %ln
+21:22:03 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c: In function 'mostrarDosValores':
+..\src\func.c:21:17: warning: format '%ld' expects argument of type 'long int', but argument 2 has type 'long int *' [-Wformat=]
+   21 |   printf("A = %ld   B = %ld",pVal1, pVal2);
+      |               ~~^            ~~~~~
+      |                 |            |
+      |                 long int     long int *
+      |               %ln
+..\src\func.c:21:27: warning: format '%ld' expects argument of type 'long int', but argument 3 has type 'long int *' [-Wformat=]
+   21 |   printf("A = %ld   B = %ld",pVal1, pVal2);
+      |                         ~~^         ~~~~~
+      |                           |         |
+      |                           long int  long int *
+      |                         %ln
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: cannot open output file utn-tp1.exe: Permission denied
+collect2.exe: error: ld returned 1 exit status
+21:22:15 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: cannot open output file utn-tp1.exe: Permission denied
+collect2.exe: error: ld returned 1 exit status
+21:22:19 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+21:27:12 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c: In function 'mostrarDosValores':
+..\src\func.c:19:16: error: 'pVal' undeclared (first use in this function); did you mean 'pVal2'?
+   19 |   if((pVal1 != pVal )&&( *pVal2 > MIN && *pVal2 < MAX))
+      |                ^~~~
+      |                pVal2
+..\src\func.c:19:16: note: each undeclared identifier is reported only once for each function it appears in
+22:21:27 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c: In function 'mostrarDosValores':
+..\src\func.c:17:6: warning: unused variable 'buffer2' [-Wunused-variable]
+   17 |  int buffer2;
+      |      ^~~~~~~
+..\src\func.c:16:6: warning: unused variable 'buffer1' [-Wunused-variable]
+   16 |  int buffer1;
+      |      ^~~~~~~
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+22:28:55 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+..\src\utn-tp1.c: In function 'main':
+..\src\utn-tp1.c:65:18: warning: format '%ld' expects argument of type 'long int', but argument 2 has type 'long int *' [-Wformat=]
+   65 |    printf("A = %ld   B = %ld",&a,&b);
+      |                ~~^            ~~
+      |                  |            |
+      |                  long int     long int *
+      |                %ln
+..\src\utn-tp1.c:65:28: warning: format '%ld' expects argument of type 'long int', but argument 3 has type 'long int *' [-Wformat=]
+   65 |    printf("A = %ld   B = %ld",&a,&b);
+      |                          ~~^     ~~
+      |                            |     |
+      |                            |     long int *
+      |                            long int
+      |                          %ln
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+22:29:24 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+Info: Nothing to build for utn-tp1
+22:30:48 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+Info: Nothing to build for utn-tp1
+Info: Nothing to build for utn-tp1
+22:33:29 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 

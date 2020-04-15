@@ -31,13 +31,13 @@ int main() {
 			case 1:
 				if(getNumber(&a,"A =\n","Número invalido\n",MIN,MAX,2))
 				{
-					contadorA++;
+				contadorA++;
 				}
 				break;
 			case 2:
 				if(getNumber(&b,"B =\n","Número invalido\n",MIN,MAX,2))
 				{
-					contadorB++;
+				contadorB++;
 				}
 				break;
 			case 3:
@@ -63,6 +63,7 @@ int main() {
 			case 5:
 				break;
 			}
+		//mostrarDosValores(&a,&b);
 		if(contadorA >0 && contadorB >0 )
 		{
 			printf("A = %ld   B = %ld",a,b);

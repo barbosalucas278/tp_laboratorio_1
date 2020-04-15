@@ -4,7 +4,27 @@
 #include <stdlib.h>
 #include <string.h>
 #include "func.h"
+/*
+ * \brief Se utiliza para imprimir en pantalla dos valores dentro del rango establecido.
+ * \param	dos punteros de variables enteras long
+ * \return 0 si las imprime -1 si no logra imprimirlas
+ * */
 
+int mostrarDosValores (long* pVal1, long* pVal2)
+{
+	int r=0;
+
+	if(pVal1 != NULL && pVal2 != NULL)
+	{
+		if((*pVal1 > MIN && *pVal1 < MAX )&&( *pVal2 > MIN && *pVal2 < MAX))
+		{
+		printf("A = %ld   B = %ld",*pVal1, *pVal2);
+		r=1;
+		}
+	}
+
+	return r;
+}
 /*
  * \brief Se utiliza para sumar 2 variables
  * \param	dos variables enteras

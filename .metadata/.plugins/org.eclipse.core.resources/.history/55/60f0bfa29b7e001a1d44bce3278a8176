@@ -4,13 +4,31 @@
 #include <stdlib.h>
 #include <string.h>
 #include "func.h"
+/*
+ * \brief Se utiliza para imprimir en pantalla dos valores dentro del rango establecido.
+ * \param	dos punteros de variables enteras
+ * \return 0 si las imprime -1 si no logra imprimirlas
+ * */
 
+int mostrarDosValores (int* pVal1, int* pVal2)
+{
+	int r=0;
+	if(pVal1 != NULL && pVal2 != NULL)
+	{
+		if((*pVal1 > MIN && *pVal1 < MAX )&&(* pVal2 > MIN && *pVal2 < MAX))
+		{
+		printf("A = %d   B = %d",*pVal1, *pVal2);
+		r=1;
+		}
+	}
+	return r;
+}
 /*
  * \brief Se utiliza para sumar 2 variables
  * \param	dos variables enteras
  * \return la suma de las mismas
  * */
-int Sumar (long x, long y, long* pResultado){
+int Sumar (int x, int y, int* pResultado){
 	int r=0;
 	if(pResultado != NULL)
 	{
@@ -26,7 +44,7 @@ int Sumar (long x, long y, long* pResultado){
  * \return la resta de las mismas
  * */
 
-int Restar (long x, long y, long* pResultado){
+int Restar (int x, int y, int* pResultado){
 	int r=0;
 	if(pResultado != NULL)
 	{
@@ -42,7 +60,7 @@ int Restar (long x, long y, long* pResultado){
  * \return la division de las mismas
  * */
 
-int Dividir (long x, long y, float* pResultado){
+int Dividir (int x, int y, float* pResultado){
 	float r=0;
 	if(y!=0 && pResultado!=NULL){
 		*pResultado = (float)x / y;
@@ -57,7 +75,7 @@ int Dividir (long x, long y, float* pResultado){
  * \return el producto de las mismas
  * */
 
-int Multiplicar (long x, long y, long* pResultado)
+int Multiplicar (int x, int y, int* pResultado)
 {
 	int r=0;
 	if(pResultado != NULL)
@@ -74,21 +92,16 @@ int Multiplicar (long x, long y, long* pResultado)
  * \return el factorial de las mismas
  * */
 
-int Factorial (long x, double* pResultado)
+int Factorial (int x, int* pResultado)
 {
 	int r = -1;
-	double buffer;
+	int buffer;
 	int i;
 	if(pResultado != NULL)
 	{
 	for(i = 1; i<=x;i++)
 	{
-		if(i==1){
-		buffer = i *(i);
-		continue;
-		}
-
-		buffer = buffer *(i);
+		buffer = i *(i+1);
 
 	}
 	*pResultado = buffer;
@@ -130,7 +143,7 @@ int isNumber(char *cadena) {
  * \param pResultado es el valor de la direccion de memoria en donde voy a guardar lo que voy a tranformar con atoi().
  * \return 1 si es un int -1 si no es un int
  * */
-int getInt(long *pResultado) {
+int getInt(int *pResultado) {
 	int ret = 0;
 	char buffer[MAX_ARRAY_CHAR];
 	if (pResultado != NULL) {
@@ -157,10 +170,10 @@ int getInt(long *pResultado) {
  *
  */
 
-int getNumber(long *pResultado, char *mensaje, char *mensajeError, long min,
-		long max, int reintentos) {
+int getNumber(int *pResultado, char *mensaje, char *mensajeError, int min,
+		int max, int reintentos) {
 	int ret=0;
-	long num;
+	int num;
 	if (pResultado != NULL && mensaje != NULL && mensajeError != NULL
 			&& min <= max && reintentos >= 0) {
 		while (reintentos > 0) {

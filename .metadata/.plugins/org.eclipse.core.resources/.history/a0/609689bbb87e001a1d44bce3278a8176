@@ -29,16 +29,12 @@ int main() {
 		getNumber(&option,"\n¿Qué desea ahacer?\nIngrese una opcion: \n1. Ingrese número A\n2. Ingrese número B\n3. Calcular todas las operaciones\n4. Resultados\n5. Salir\n","ERROR, opcion invalida\n",1,5,3);
 		switch(option){
 			case 1:
-				if(getNumber(&a,"A =\n","Número invalido\n",MIN,MAX,2))
-				{
-					contadorA++;
-				}
+				getNumber(&a,"A =\n","Número invalido\n",MIN,MAX,2);
+				contadorA++;
 				break;
 			case 2:
-				if(getNumber(&b,"B =\n","Número invalido\n",MIN,MAX,2))
-				{
-					contadorB++;
-				}
+				getNumber(&b,"B =\n","Número invalido\n",MIN,MAX,2);
+				contadorB++;
 				break;
 			case 3:
 				Sumar(a,b,&laSumaEs);
@@ -63,6 +59,7 @@ int main() {
 			case 5:
 				break;
 			}
+		//mostrarDosValores(&a,&b);
 		if(contadorA >0 && contadorB >0 )
 		{
 			printf("A = %ld   B = %ld",a,b);
