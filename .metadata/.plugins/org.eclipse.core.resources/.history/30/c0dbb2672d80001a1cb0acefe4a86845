@@ -75,7 +75,7 @@ int main() {
 					printf("Valores no cargados");
 				}
 
-				break;
+			break;
 			case 5:
 				break;
 			}

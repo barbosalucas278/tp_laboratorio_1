@@ -27,38 +27,30 @@ int main() {
 	double elFactorialB;
 	do{
 		getNumber(&option,"\n¿Qué desea ahacer?\nIngrese una opcion: \n1. Ingrese número A\n2. Ingrese número B\n3. Calcular todas las operaciones\n4. Resultados\n5. Salir\n","ERROR, opcion invalida\n",1,5,3);
-		switch(option)
+		if(contadorA == contadoB)
 		{
-			case 1:
-				if(getNumber(&a,"A =\n","Número invalido\n",MIN,MAX,2))
-				{
-					contadorA++;
-				}
-				break;
-			case 2:
-				if(getNumber(&b,"B =\n","Número invalido\n",MIN,MAX,2))
-				{
-					contadorB++;
-				}
-				break;
-			case 3:
-				if(contadorA>0 && contadorB>0)
-				{
+			switch(option){
+				case 1:
+					if(getNumber(&a,"A =\n","Número invalido\n",MIN,MAX,2))
+					{
+						contadorA++;
+					}
+					break;
+				case 2:
+					if(getNumber(&b,"B =\n","Número invalido\n",MIN,MAX,2))
+					{
+						contadorB++;
+					}
+					break;
+				case 3:
 					Sumar(a,b,&laSumaEs);
 					Restar(a,b,&laRestaEs);
 					Dividir(a,b,&laDivisionEs);
 					Multiplicar(a,b,&elProductoEs);
 					Factorial(a,&elFactorialA);
 					Factorial(b,&elFactorialB);
-				}
-				else
-				{
-					printf("Valores no cargados");
-				}
-				break;
-			case 4:
-				if(contadorA>0 && contadorB>0)
-				{
+					break;
+				case 4:
 					printf("\nLa suma de A y B es: %ld",laSumaEs);
 					printf("\nLa resta entre A y B es: %ld",laRestaEs);
 					if(laDivisionEs==0){
@@ -69,16 +61,11 @@ int main() {
 					printf("\nEl producto de A con B es: %ld",elProductoEs);
 					printf("\nEl factorial de A es: %.02f ",elFactorialA);
 					printf("\nEl factorial de B es: %.02f \n",elFactorialB);
-				}
-				else
-				{
-					printf("Valores no cargados");
-				}
-
-				break;
-			case 5:
-				break;
+					break;
+				case 5:
+					break;
 			}
+		}
 		if(contadorA >0 && contadorB >0 )
 		{
 			printf("A = %ld   B = %ld",a,b);

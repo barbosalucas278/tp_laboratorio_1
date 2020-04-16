@@ -1963,3 +1963,93 @@ Info: Internal Builder is used for build
 gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
 gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
 gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+18:50:10 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c:13:5: error: conflicting types for 'Sumar'
+   13 | int Sumar (long* x, long* y, long* pResultado){
+      |     ^~~~~
+In file included from ..\src\func.c:6:
+..\src\func.h:17:5: note: previous declaration of 'Sumar' was here
+   17 | int Sumar (long x, long y, long* pResultado);
+      |     ^~~~~
+..\src\func.c: In function 'Sumar':
+..\src\func.c:17:19: error: invalid operands to binary + (have 'long int *' and 'long int *')
+   17 |   *pResultado = x + y;
+      |                   ^
+18:50:36 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+..\src\utn-tp1.c: In function 'main':
+..\src\utn-tp1.c:44:11: warning: passing argument 1 of 'Sumar' makes pointer from integer without a cast [-Wint-conversion]
+   44 |     Sumar(a,b,&laSumaEs);
+      |           ^
+      |           |
+      |           long int
+In file included from ..\src\utn-tp1.c:13:
+..\src\func.h:17:18: note: expected 'long int *' but argument is of type 'long int'
+   17 | int Sumar (long* x, long* y, long* pResultado);
+      |            ~~~~~~^
+..\src\utn-tp1.c:44:13: warning: passing argument 2 of 'Sumar' makes pointer from integer without a cast [-Wint-conversion]
+   44 |     Sumar(a,b,&laSumaEs);
+      |             ^
+      |             |
+      |             long int
+In file included from ..\src\utn-tp1.c:13:
+..\src\func.h:17:27: note: expected 'long int *' but argument is of type 'long int'
+   17 | int Sumar (long* x, long* y, long* pResultado);
+      |                     ~~~~~~^
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c: In function 'Sumar':
+..\src\func.c:17:19: error: invalid operands to binary + (have 'long int *' and 'long int *')
+   17 |   *pResultado = x + y;
+      |                   ^
+18:51:05 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c: In function 'Sumar':
+..\src\func.c:17:19: error: invalid operands to binary + (have 'long int *' and 'long int *')
+   17 |   *pResultado = x + y;
+      |                   ^
+18:51:21 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+18:52:02 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c: In function 'Sumar':
+..\src\func.c:15:7: warning: comparison between pointer and integer
+   15 |  if(x != NULL && y != NULL && pResultado != NULL)
+      |       ^~
+..\src\func.c:15:20: warning: comparison between pointer and integer
+   15 |  if(x != NULL && y != NULL && pResultado != NULL)
+      |                    ^~
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+18:52:28 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+18:54:54 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+..\src\utn-tp1.c: In function 'main':
+..\src\utn-tp1.c:30:19: error: 'contadoB' undeclared (first use in this function); did you mean 'contadorB'?
+   30 |   if(contadorA == contadoB)
+      |                   ^~~~~~~~
+      |                   contadorB
+..\src\utn-tp1.c:30:19: note: each undeclared identifier is reported only once for each function it appears in
+18:55:06 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+18:58:31 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
