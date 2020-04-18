@@ -2053,3 +2053,52 @@ gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c"
 gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
 gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
 Info: Nothing to build for utn-tp1
+01:22:13 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+01:24:00 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+..\src\utn-tp1.c: In function 'main':
+..\src\utn-tp1.c:29:3: warning: implicit declaration of function 'getNumber'; did you mean 'get_Number'? [-Wimplicit-function-declaration]
+   29 |   getNumber(&option,"\n¿Qué desea ahacer?\nIngrese una opcion: \n1. Ingrese número A\n2. Ingrese número B\n3. Calcular todas las operaciones\n4. Resultados\n5. Salir\n","ERROR, opcion invalida\n",1,5,3);
+      |   ^~~~~~~~~
+      |   get_Number
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: src\utn-tp1.o: in function `main':
+C:\Users\pocho\Desktop\TRABAJOS_UTN\tp_laboratorio_1\utn-tp1\Debug/../src/utn-tp1.c:29: undefined reference to `getNumber'
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: C:\Users\pocho\Desktop\TRABAJOS_UTN\tp_laboratorio_1\utn-tp1\Debug/../src/utn-tp1.c:33: undefined reference to `getNumber'
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: C:\Users\pocho\Desktop\TRABAJOS_UTN\tp_laboratorio_1\utn-tp1\Debug/../src/utn-tp1.c:39: undefined reference to `getNumber'
+collect2.exe: error: ld returned 1 exit status
+01:24:07 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: src\utn-tp1.o: in function `main':
+C:\Users\pocho\Desktop\TRABAJOS_UTN\tp_laboratorio_1\utn-tp1\Debug/../src/utn-tp1.c:29: undefined reference to `getNumber'
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: C:\Users\pocho\Desktop\TRABAJOS_UTN\tp_laboratorio_1\utn-tp1\Debug/../src/utn-tp1.c:33: undefined reference to `getNumber'
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: C:\Users\pocho\Desktop\TRABAJOS_UTN\tp_laboratorio_1\utn-tp1\Debug/../src/utn-tp1.c:39: undefined reference to `getNumber'
+collect2.exe: error: ld returned 1 exit status
+01:24:24 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: src\utn-tp1.o: in function `main':
+C:\Users\pocho\Desktop\TRABAJOS_UTN\tp_laboratorio_1\utn-tp1\Debug/../src/utn-tp1.c:29: undefined reference to `getNumber'
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: C:\Users\pocho\Desktop\TRABAJOS_UTN\tp_laboratorio_1\utn-tp1\Debug/../src/utn-tp1.c:33: undefined reference to `getNumber'
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: C:\Users\pocho\Desktop\TRABAJOS_UTN\tp_laboratorio_1\utn-tp1\Debug/../src/utn-tp1.c:39: undefined reference to `getNumber'
+collect2.exe: error: ld returned 1 exit status
+01:24:45 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+01:25:05 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+01:25:15 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 

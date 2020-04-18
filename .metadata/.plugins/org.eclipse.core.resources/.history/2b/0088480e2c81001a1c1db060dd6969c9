@@ -4,8 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "func.h"
-static int getInt (long* pResultado);
-static int isNumber (char* cadena);
+
 /*
  * \brief Se utiliza para sumar 2 variables
  * \param	dos variables enteras
@@ -104,7 +103,7 @@ int Factorial (long x, double* pResultado)
  *
  * */
 
-static int isNumber(char *cadena) {
+int isNumber(char *cadena) {
 	int ret=0;
 	int i;
 	if (cadena != NULL) {
@@ -131,7 +130,7 @@ static int isNumber(char *cadena) {
  * \param pResultado es el valor de la direccion de memoria en donde voy a guardar lo que voy a tranformar con atoi().
  * \return 1 si es un int -1 si no es un int
  * */
-static int getInt(long *pResultado) {
+int getInt(long *pResultado) {
 	int ret = 0;
 	char buffer[MAX_ARRAY_CHAR];
 	if (pResultado != NULL) {
@@ -158,7 +157,7 @@ static int getInt(long *pResultado) {
  *
  */
 
-int get_Number(long *pResultado, char *mensaje, char *mensajeError, long min,
+int getNumber(long *pResultado, char *mensaje, char *mensajeError, long min,
 		long max, int reintentos) {
 	int ret=0;
 	long num;

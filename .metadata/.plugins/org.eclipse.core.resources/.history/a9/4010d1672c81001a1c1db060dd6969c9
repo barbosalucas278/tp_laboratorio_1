@@ -24,6 +24,6 @@ int Multiplicar (long x, long y, long* pRestulado);
 
 int Factorial (long x, double* pResultado);
 
-int get_Number (long* pResultado, char* mensaje, char* mensajeError, long min, long max, int reintentos);
+int getNumber (long* pResultado, char* mensaje, char* mensajeError, long min, long max, int reintentos);
 
 

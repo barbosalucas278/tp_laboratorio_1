@@ -4,8 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "func.h"
-static int getInt (long* pResultado);
-static int isNumber (char* cadena);
+
 /*
  * \brief Se utiliza para sumar 2 variables
  * \param	dos variables enteras
@@ -158,7 +157,7 @@ static int getInt(long *pResultado) {
  *
  */
 
-int get_Number(long *pResultado, char *mensaje, char *mensajeError, long min,
+int getNumber(long *pResultado, char *mensaje, char *mensajeError, long min,
 		long max, int reintentos) {
 	int ret=0;
 	long num;

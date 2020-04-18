@@ -26,17 +26,17 @@ int main() {
 	double elFactorialA;
 	double elFactorialB;
 	do{
-		get_Number(&option,"\n¿Qué desea ahacer?\nIngrese una opcion: \n1. Ingrese número A\n2. Ingrese número B\n3. Calcular todas las operaciones\n4. Resultados\n5. Salir\n","ERROR, opcion invalida\n",1,5,3);
+		getNumber(&option,"\n¿Qué desea ahacer?\nIngrese una opcion: \n1. Ingrese número A\n2. Ingrese número B\n3. Calcular todas las operaciones\n4. Resultados\n5. Salir\n","ERROR, opcion invalida\n",1,5,3);
 		switch(option)
 		{
 			case 1:
-				if(get_Number(&a,"A =\n","Número invalido\n",MIN,MAX,2))
+				if(getNumber(&a,"A =\n","Número invalido\n",MIN,MAX,2))
 				{
 					contadorA++;
 				}
 				break;
 			case 2:
-				if(get_Number(&b,"B =\n","Número invalido\n",MIN,MAX,2))
+				if(getNumber(&b,"B =\n","Número invalido\n",MIN,MAX,2))
 				{
 					contadorB++;
 				}

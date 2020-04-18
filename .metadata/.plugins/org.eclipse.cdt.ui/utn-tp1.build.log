@@ -1,1 +1,7 @@
-Info: Nothing to build for utn-tp1
+01:25:15 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+
+01:25:16 Build Finished. 0 errors, 0 warnings. (took 607ms)
+
