@@ -46,7 +46,9 @@ int Restar (long x, long y, long* pResultado){
 int Dividir (long x, long y, float* pResultado){
 	float r=0;
 	if(pResultado!=NULL){
-		if(y != 0){
+		if(y == 0){
+			Printf("No se puede dividir por 0");
+		}else{
 			*pResultado = (float)x / y;
 			r=1;
 		}

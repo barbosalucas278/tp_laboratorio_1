@@ -2102,3 +2102,57 @@ gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o"
 Info: Internal Builder is used for build
 gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
 gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+14:27:31 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+..\src\func.c: In function 'Dividir':
+..\src\func.c:50:4: warning: implicit declaration of function 'Printf'; did you mean 'printf'? [-Wimplicit-function-declaration]
+   50 |    Printf("No se puede dividir por 0");
+      |    ^~~~~~
+      |    printf
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: cannot open output file utn-tp1.exe: Permission denied
+collect2.exe: error: ld returned 1 exit status
+14:27:42 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+14:28:52 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: cannot open output file utn-tp1.exe: Permission denied
+collect2.exe: error: ld returned 1 exit status
+14:28:54 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+Info: Nothing to build for utn-tp1
+Info: Nothing to build for utn-tp1
+Info: Nothing to build for utn-tp1
+Info: Nothing to build for utn-tp1
+14:31:04 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: cannot open output file utn-tp1.exe: Permission denied
+collect2.exe: error: ld returned 1 exit status
+14:31:07 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1
+Info: Nothing to build for utn-tp1
+Info: Nothing to build for utn-tp1
+14:41:31 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\utn-tp1.o" "..\\src\\utn-tp1.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\func.o" "..\\src\\func.c" 
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+c:/mingw/bin/../lib/gcc/mingw32/9.2.0/../../../../mingw32/bin/ld.exe: cannot open output file utn-tp1.exe: Permission denied
+collect2.exe: error: ld returned 1 exit status
+14:41:33 **** Incremental Build of configuration Debug for project utn-tp1 ****
+Info: Internal Builder is used for build
+gcc -o utn-tp1.exe "src\\func.o" "src\\utn-tp1.o" 
+Info: Nothing to build for utn-tp1

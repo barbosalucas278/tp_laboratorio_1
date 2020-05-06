@@ -22,6 +22,7 @@ int main() {
 	long laSumaEs;
 	long laRestaEs;
 	float laDivisionEs;
+	int division;
 	long elProductoEs;
 	double elFactorialA;
 	double elFactorialB;
@@ -46,7 +47,7 @@ int main() {
 				{
 					Sumar(a,b,&laSumaEs);
 					Restar(a,b,&laRestaEs);
-					Dividir(a,b,&laDivisionEs);
+					division = Dividir(a,b,&laDivisionEs);
 					Multiplicar(a,b,&elProductoEs);
 					Factorial(a,&elFactorialA);
 					Factorial(b,&elFactorialB);
@@ -61,7 +62,7 @@ int main() {
 				{
 					printf("\nLa suma de A y B es: %ld",laSumaEs);
 					printf("\nLa resta entre A y B es: %ld",laRestaEs);
-					if(laDivisionEs==0){
+					if(!division){
 						printf("\nERROR, no se puede dividir por cero !!!");
 					}else{
 						printf("\nLa division de A por B es: %.2f",laDivisionEs);
