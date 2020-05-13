@@ -451,7 +451,7 @@ void menuSort(eEmployee *list, int len, int id) {
 			case 1:
 				if(id > 1){
 					system("CLS");
-					getNumber(&optionSort,"ELIJA EL ORDEN\n\n 1 - Mayor a menor\n 2 - Menor a mayor","Error, opcion invalida",1,2,2);
+					getNumber(&optionSort,"ELIJA EL ORDEN\n\n 1 - Menor a mayor\n 2 - Mayor a menor","Error, opcion invalida",1,2,2);
 					if(optionSort== 1){
 						order = 1;
 					}else if(optionSort == 2){
