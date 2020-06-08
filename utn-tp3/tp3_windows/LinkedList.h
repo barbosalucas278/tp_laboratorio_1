@@ -52,7 +52,7 @@ int test_addNode(LinkedList* this, int nodeIndex,void* pElement);
 /*>Agrega un elemento al final de LinkedList..*/
 int ll_add(LinkedList* this, void* pElement);
 
-/**/
+/*Retorna un puntero al elemento que se encuentra en el indice especificado*/
 void* ll_get(LinkedList* this, int index);
 
 /*Retorna un puntero al elemento que se encuentra en el
