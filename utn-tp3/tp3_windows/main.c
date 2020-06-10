@@ -6,7 +6,7 @@
 #include "utn.h"
 
 #define DATA "data.csv"
-#define DATA2 "data2.csv"
+#define DATABIN "databin.csv"
 /****************************************************
     Menu:
      1. Cargar los datos de los empleados desde el archivo data.csv (modo texto).
@@ -27,8 +27,6 @@ int main()
 	setbuf(stdout, NULL);
     int option = 0;
     LinkedList* listaEmpleados = ll_newLinkedList();
-    //LinkedList* empleadosActualizados = ll_newLinkedList();
-    //Employee* pruebaEmp;
 
     do{
     	option = menu();
@@ -43,34 +41,37 @@ int main()
             			   pruebaEmp->horasTrabajadas,pruebaEmp->sueldo);
                }*/
                 break;
-            case 2://cargar desde binario
-            	controller_loadFromBinary(DATA2,listaEmpleados);
-            	//printf("CANTIDAD EN LISTA [%d]\n",ll_len(listaEmpleados));
+            case 2:
+            	controller_loadFromBinary(DATABIN,listaEmpleados);
             	break;
-            case 3://alta employee
+            case 3:
             	controller_addEmployee(listaEmpleados);
             	break;
-            case 4://modify employee
+            case 4:
             	controller_editEmployee(listaEmpleados);
             	break;
-            case 5://remove employee
+            case 5:
             	controller_ListEmployee(listaEmpleados);
             	controller_removeEmployee(listaEmpleados);
             	break;
-            case 6://prints employees
+            case 6:
             	controller_ListEmployee(listaEmpleados);
             	break;
-            case 7://sort employee
+            case 7:
             	controller_sortEmployee(listaEmpleados);
             	break;
-            case 8://guardar en texto
-
+            case 8:
+            	controller_saveAsText(DATA,listaEmpleados);
             	break;
-            case 9://guardar en binario
+            case 9:
+            	controller_saveAsBinary(DATABIN,listaEmpleados);
             	break;
-            case 10://exit
+            case 10:
             	break;
         }
     }while(option != 10);
+
+    ll_clear(listaEmpleados);
+    ll_deleteLinkedList(listaEmpleados);
     return 0;
 }

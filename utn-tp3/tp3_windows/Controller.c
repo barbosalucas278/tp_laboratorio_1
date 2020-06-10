@@ -79,7 +79,7 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 		}
 		else{
 			bufferId = ll_len(pArrayListEmployee);
-			bufferId++;
+			bufferId ++;
 			newEmployee = employee_newAlta(bufferId,bufferNombre,bufferHorasTrabajadas,bufferSueldo);
 			if(newEmployee != NULL){
 				ll_add(pArrayListEmployee,(Employee*)newEmployee);
@@ -247,8 +247,22 @@ int controller_sortEmployee(LinkedList *pArrayListEmployee) {
  */
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 {
+	int ret = -1;
+	FILE* file;
+	int lenLL;
 
-    return 1;
+	if(path != NULL && pArrayListEmployee != NULL){
+		lenLL = ll_len(pArrayListEmployee);
+		file = parser_WriteFlieFromText(path);
+		 if(file != NULL){
+			 if(parser_saveAsText(file,pArrayListEmployee,lenLL)){
+				 printf("Guardado exitoso");
+				 fclose(file);
+				 ret = 1;
+			 }
+		 }
+	}
+    return ret;
 }
 
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo binario).
@@ -260,7 +274,19 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
 {
-    return 1;
+	int ret = -1;
+	FILE* file;
+	int lenLL = ll_len(pArrayListEmployee);
+	file = parser_WriteFileAsBinary(path);
+	if(file != NULL){
+		if(parser_saveAsBinary(file,pArrayListEmployee,lenLL)){
+			printf("Guardado exitoso\n");
+			fclose(file);
+			ret = 1;
+		}
+
+	}
+    return ret;
 }
 
 

@@ -18,7 +18,7 @@ int parser_EmployeeFromText(FILE *pFile, LinkedList *pArrayListEmployee) {
 	int count;
 	if(pFile != NULL && pArrayListEmployee != NULL){
 
-		fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n]\n", buffer[0], buffer[1], buffer[2], buffer[3]);
+		fscanf(pFile, "%[id],%[nombre],%[horasTrabajadas],%[sueldo]\n", buffer[0], buffer[1], buffer[2], buffer[3]);
 			while (!feof(pFile)) {
 				count = fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n]\n", buffer[0],
 						buffer[1], buffer[2], buffer[3]);
@@ -67,7 +67,32 @@ FILE* parser_WriteFlieFromText(char* path){
 	FILE* file;
 	if(path != NULL){
 		file = fopen(path,"w");
+		if(file == NULL){
+			printf("El archivo no se puede abrir en modo escritura");
+		}
 	}
+	return file;
+}
+/*
+ *
+ *
+ *
+ *
+ */
+
+int parser_saveAsText(FILE *pFile, LinkedList *pArrayListEmployee, int lenLL) {
+	int ret = -1;
+	Employee *newEmployee = employee_new();
+
+	int i = 0;
+	for (i = 0; i < lenLL; i++) {
+
+		newEmployee = ll_get(pArrayListEmployee, i);
+		fprintf(pFile,"%d,%s,%d,%d\n",newEmployee->id,newEmployee->nombre,
+				newEmployee->horasTrabajadas,newEmployee->sueldo);
+		ret = 1;
+	}
+	return ret;
 }
 /** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo binario).
  *
@@ -119,4 +144,31 @@ FILE* parser_openFileFromBinary(char* path){
 	}
 
 	return file;
+}
+
+FILE* parser_WriteFileAsBinary(char* path){
+	FILE* file;
+	if(path != NULL){
+		file = fopen(path,"wb");
+		if(file == NULL){
+			printf("No se pudo abrir el documento para escribirlo\n");
+			fclose(file);
+		}
+
+	}
+	return file;
+}
+int parser_saveAsBinary(FILE* pFile,LinkedList* pArrayList,int lenLL){
+	int ret = -1;
+	Employee *newEmployee = employee_new();
+
+	int i = 0;
+	for (i = 0; i < lenLL; i++) {
+
+		newEmployee = ll_get(pArrayList, i);
+		fprintf(pFile,"%d,%s,%d,%d\n",newEmployee->id,newEmployee->nombre,
+						newEmployee->horasTrabajadas,newEmployee->sueldo);
+		ret = 1;
+	}
+	return ret;
 }
