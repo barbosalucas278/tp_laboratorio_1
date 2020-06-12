@@ -39,21 +39,25 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
  * \return int
  *
  */
-int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
-{
+int controller_loadFromBinary(char *path, LinkedList *pArrayListEmployee) {
 	int ret = -1;
-	FILE* file;
-	if(path != NULL && pArrayListEmployee!= NULL){
-		file = parser_openFileFromBinary(path);
-		if(file != NULL){
-			if(parser_EmployeeFromBinary(file,pArrayListEmployee)){
+	FILE *file;
+	if (path != NULL && pArrayListEmployee != NULL) {
+		file = fopen(path, "rb");
+		if (file == NULL) {
+			printf("No se pudo abrir el archivo.");
+		}
+		else {
+			if (parser_EmployeeFromBinary(file, pArrayListEmployee)) {
 				printf("Se cargo correctamente la lista [MODO BINARIO]");
 				fclose(file);
+			}else{
+				printf("ERROR");
 			}
 		}
 	}
 
-    return ret;
+	return ret;
 }
 
 /** \brief Alta de empleados
@@ -72,14 +76,15 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 	int bufferId;
 	Employee* newEmployee;
 
+
 	if(pArrayListEmployee != NULL){
 		if(employee_dataRegistration(bufferNombre,&bufferHorasTrabajadas,&bufferSueldo)==-1){
 			printf("No se pudo realizar la carga de los datos");
 			ret = -1;
 		}
 		else{
+			newEmployee = employee_new();
 			bufferId = ll_len(pArrayListEmployee);
-			bufferId ++;
 			newEmployee = employee_newAlta(bufferId,bufferNombre,bufferHorasTrabajadas,bufferSueldo);
 			if(newEmployee != NULL){
 				ll_add(pArrayListEmployee,(Employee*)newEmployee);
@@ -112,7 +117,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 	Employee* auxEmp = employee_new();
 	lenLL = ll_len(pArrayListEmployee);
 	if (getIndexFromId(&indexModify, lenLL)){
-		auxEmp = ll_get(pArrayListEmployee, indexModify);
+		auxEmp = (Employee*)ll_get(pArrayListEmployee, indexModify);
 		printEmployee(auxEmp);
 		if(employee_modify(auxEmp)){
 			set = ll_set(pArrayListEmployee,indexModify,auxEmp);
@@ -142,7 +147,7 @@ int controller_removeEmployee(LinkedList *pArrayListEmployee) {
 	Employee *auxEmp = employee_new();
 	lenLL = ll_len(pArrayListEmployee);
 	if (getIndexFromId(&indexDelete, lenLL)) {
-		auxEmp = ll_get(pArrayListEmployee, indexDelete);
+		auxEmp = (Employee*)ll_get(pArrayListEmployee, indexDelete);
 		if (auxEmp != NULL) {
 			printEmployee(auxEmp);
 			getString(respuesta, "Confirma darlo de BAJA?\n [SI/NO]\n",
@@ -182,7 +187,7 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
 	lenLL = ll_len(pArrayListEmployee);
 
 	for(i=0;i<lenLL;i++){
-		auxEmp = ll_get(pArrayListEmployee,i);
+		auxEmp = (Employee*)ll_get(pArrayListEmployee,i);
 		if(auxEmp != NULL){
 			printEmployee(auxEmp);
 			ret = 1;
@@ -272,21 +277,24 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
  * \return int
  *
  */
-int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
-{
+int controller_saveAsBinary(char *path, LinkedList *pArrayListEmployee) {
 	int ret = -1;
-	FILE* file;
+	FILE *file;
 	int lenLL = ll_len(pArrayListEmployee);
-	file = parser_WriteFileAsBinary(path);
-	if(file != NULL){
-		if(parser_saveAsBinary(file,pArrayListEmployee,lenLL)){
+	file = fopen(path, "wb");
+	if (file == NULL) {
+		printf("No se pudo abrir el documento para escribirlo\n");
+		fclose(file);
+	}
+	if (file != NULL) {
+		if (parser_saveAsBinary(file, pArrayListEmployee, lenLL)) {
 			printf("Guardado exitoso\n");
 			fclose(file);
 			ret = 1;
 		}
 
 	}
-    return ret;
+	return ret;
 }
 
 

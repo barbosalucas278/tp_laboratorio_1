@@ -14,6 +14,7 @@ Employee* employee_new(){
 	Employee* this = (Employee*) malloc(sizeof(Employee));
 	if(this != NULL)
 	{
+
 		employee_setNombre(this,"");
 		employee_setHorasTrabajadas(this,0);
 		employee_setSueldo(this,0);
@@ -100,7 +101,7 @@ int employee_modify(Employee* this){
 					"Opcion incorrecta\n", 10, 2);
 			strupr(answer);
 			if (strcmp(answer, "SI") == 0) {
-				strcpy(this->nombre,bufferName);
+				employee_setNombre(this,bufferName);
 				printf("MODIFICACION hecha\n");
 				ret = 1;
 			} else if (strcmp(answer, "NO") == 0) {
@@ -113,7 +114,7 @@ int employee_modify(Employee* this){
 					"Opcion incorrecta\n", 10, 2);
 			strupr(answer);
 			if (strcmp(answer, "SI") == 0) {
-				this->horasTrabajadas = bufferHoras;
+				employee_setHorasTrabajadas(this,bufferHoras);
 				printf("MODIFICACION hecha\n");
 				ret = 1;
 			} else if (strcmp(answer, "NO") == 0) {
@@ -126,7 +127,7 @@ int employee_modify(Employee* this){
 					"Opcion incorrecta\n", 10, 2);
 			strupr(answer);
 			if (strcmp(answer, "SI") == 0) {
-				this->sueldo = bufferSueldo;
+				employee_setSueldo(this,bufferSueldo);
 				printf("MODIFICACION hecha\n");
 				ret = 1;
 			} else if (strcmp(answer, "NO") == 0) {
@@ -212,14 +213,24 @@ int getSueldoEmployee(int* pSueldo){
  *
  *
  */
-int employee_setId(Employee* this,int id){
+int employee_setId(Employee *this, int id) {
 	int ret = -1;
-	if(this != NULL && id >0){
-		this->id = id;
-		ret = 1;
+	static int maximoId = -1;
+	if(this != NULL){
+		ret = 0;
+		if(id < 0 || id <maximoId){
+			maximoId++;
+			this->id = maximoId;
+			printf("DEBUG 1 [%d]\n",maximoId);
+		}else{
+			if(id > maximoId){
+				maximoId = id;
+				printf("DEBUG 2 [%d]\n",maximoId);
+			}
+				this->id = id;
+		}
 	}
-
-	return ret;
+return ret;
 }
 /*
  *
@@ -234,6 +245,7 @@ int employee_getId(Employee* this,int* id){
 	}
 	return ret;
 }
+
 /*
  *
  *
@@ -344,12 +356,19 @@ int getIndexFromId(int *pIndex, int lenLL) {
  */
 int sortEmployeeBySalary(void* employee1, void* employee2){
 	int ret = 0;
+	int bufferSueldo1;
+	int bufferSueldo2;
+
+	employee_getSueldo(employee1,&bufferSueldo1);
+	employee_getSueldo(employee2,&bufferSueldo2);
+
 	if(employee1  != NULL && employee2 != NULL){
-		if(((Employee*)employee1)->sueldo > ((Employee*)employee2)->sueldo){
+		if(bufferSueldo1 > bufferSueldo2){
 			ret = 1;
-		}
-		if(((Employee*)employee1)->sueldo < ((Employee*)employee2)->sueldo){
+		}else if(bufferSueldo2 > bufferSueldo1){
 			ret = -1;
+		}else if(bufferSueldo1 == bufferSueldo2){
+			ret = 0;
 		}
 	}
 
@@ -362,13 +381,20 @@ int sortEmployeeBySalary(void* employee1, void* employee2){
  */
 int sortEmployeeByWorkedHours(void* employee1, void* employee2){
 	int ret = 0;
+	int bufferHoras1;
+	int bufferHoras2;
+
+	employee_getHorasTrabajadas(employee1,&bufferHoras1);
+	employee_getHorasTrabajadas(employee2,&bufferHoras2);
 	if(employee1  != NULL && employee2 != NULL){
-		if(((Employee*)employee1)->horasTrabajadas > ((Employee*)employee2)->horasTrabajadas){
+		if(bufferHoras1 > bufferHoras2){
 			ret = 1;
-		}
-		if(((Employee*)employee1)->horasTrabajadas < ((Employee*)employee2)->horasTrabajadas){
+		}else if(bufferHoras2 > bufferHoras1){
 			ret = -1;
+		}else if(bufferHoras2 == bufferHoras1){
+			ret = 0;
 		}
+
 	}
 
 	return ret;
@@ -380,11 +406,15 @@ int sortEmployeeByWorkedHours(void* employee1, void* employee2){
  */
 int sortEmployeeById(void* employee1, void* employee2){
 	int ret = 0;
+	int id1;
+	int id2;
+	employee_getId(employee1,&id1);
+	employee_getId(employee2,&id2);
 	if(employee1  != NULL && employee2 != NULL){
-		if(((Employee*)employee1)->id > ((Employee*)employee2)->id){
+		if(id1 > id2){
 			ret = 1;
 		}
-		if(((Employee*)employee1)->id < ((Employee*)employee2)->id){
+		else if(id2 > id1){
 			ret = -1;
 		}
 	}

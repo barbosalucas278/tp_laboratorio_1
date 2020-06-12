@@ -16,6 +16,11 @@ static int addNode(LinkedList* this, int nodeIndex,void* pElement);
 LinkedList* ll_newLinkedList(void)
 {
     LinkedList* this= NULL;
+    this = (LinkedList*)malloc(sizeof(LinkedList));
+    if(this != NULL){
+    	this->pFirstNode = NULL;
+    	this->size = 0;
+    }
     return this;
 }
 
@@ -28,6 +33,10 @@ LinkedList* ll_newLinkedList(void)
 int ll_len(LinkedList* this)
 {
     int returnAux = -1;
+    if(this != NULL){
+    	returnAux = this->size;
+    }
+
     return returnAux;
 }
 
@@ -42,7 +51,26 @@ int ll_len(LinkedList* this)
  */
 static Node* getNode(LinkedList* this, int nodeIndex)
 {
-    return NULL;
+	Node* pNode=NULL;
+	int i;
+	int lenLL = ll_len(this);
+
+	if(this != NULL && nodeIndex >= 0 && nodeIndex < lenLL){
+		for(i=0;i<=nodeIndex;i++){
+			if(i==0){
+				pNode = this->pFirstNode;
+				if(i==nodeIndex){
+					return pNode;
+				}
+			}else{
+				pNode = pNode->pNextNode;
+				if(i==nodeIndex){
+					return pNode;
+				}
+			}
+		}
+	}
+    return pNode;
 }
 
 /** \brief  Permite realizar el test de la funcion getNode la cual es privada
@@ -71,6 +99,49 @@ Node* test_getNode(LinkedList* this, int nodeIndex)
 static int addNode(LinkedList* this, int nodeIndex,void* pElement)
 {
     int returnAux = -1;
+    Node* pNewNode;
+    Node* auxNode;
+    int lenLL = ll_len(this);
+    if(this != NULL && nodeIndex >= 0 ){
+    	pNewNode = (Node*)malloc(sizeof(Node));
+		if(pNewNode != NULL){
+			if(nodeIndex == 0){
+				auxNode = getNode(this,0);
+				if(auxNode != NULL){
+					pNewNode->pNextNode = this->pFirstNode;
+					pNewNode->pElement = pElement;
+					this->pFirstNode = pNewNode;
+					this->size++;
+					returnAux = 0;
+
+				}else{
+					this->pFirstNode = pNewNode;
+					pNewNode->pElement = pElement;
+					pNewNode->pNextNode = NULL;
+					this->size++;
+					returnAux = 0;
+				}
+			}else if(nodeIndex != 0){
+				auxNode = getNode(this,nodeIndex-1);
+				pNewNode->pNextNode = auxNode->pNextNode;
+				pNewNode->pElement = pElement;
+				auxNode->pNextNode = pNewNode;
+				this->size++;
+				returnAux = 0;
+
+			}else if(nodeIndex > lenLL){
+				auxNode = getNode(this,lenLL);
+				auxNode->pNextNode = pNewNode;
+				pNewNode->pNextNode = NULL;
+				pNewNode->pElement = pElement;
+				this->size++;
+				returnAux = 0;
+
+			}
+		}
+
+    }
+
     return returnAux;
 }
 
@@ -99,7 +170,13 @@ int test_addNode(LinkedList* this, int nodeIndex,void* pElement)
 int ll_add(LinkedList* this, void* pElement)
 {
     int returnAux = -1;
+    int lenLL = ll_len(this);
+    if(this != NULL){
+    	if(!addNode(this,lenLL,pElement)){
+    		returnAux = 0;
+    	}
 
+    }
     return returnAux;
 }
 
@@ -111,10 +188,28 @@ int ll_add(LinkedList* this, void* pElement)
                             (pElement) Si funciono correctamente
  *
  */
-void* ll_get(LinkedList* this, int index)
+void* ll_get(LinkedList* this, int index) //entra 3
 {
     void* returnAux = NULL;
-
+    Node* bufferNode= NULL;
+    int i;
+    int lenLL = ll_len(this);
+    if(this != NULL && index >= 0 && index < lenLL){
+    		if(index==0){
+    			bufferNode = getNode(this,0);
+    			returnAux = bufferNode->pElement;
+    		}else if (index == lenLL){
+				bufferNode = getNode(this,lenLL);
+				returnAux = bufferNode->pElement;
+    		}else{
+				for(i=0;i<lenLL;i++){
+					bufferNode = getNode(this,i);
+					if(i==index){
+						returnAux = bufferNode->pElement;
+					}
+				}
+    		}
+    }
     return returnAux;
 }
 
@@ -177,7 +272,10 @@ int ll_clear(LinkedList* this)
 int ll_deleteLinkedList(LinkedList* this)
 {
     int returnAux = -1;
-
+    if(this != NULL){
+    	free(this);
+    	returnAux = 0;
+    }
     return returnAux;
 }
 
@@ -255,7 +353,19 @@ void* ll_pop(LinkedList* this,int index)
 int ll_contains(LinkedList* this, void* pElement)
 {
     int returnAux = -1;
-
+    int i;
+    Node* auxNode = NULL;
+    int lenLL = ll_len(this);
+    if(this != NULL){
+    	returnAux = 0;
+    	for(i=0;i<lenLL;i++){
+    		auxNode = getNode(this,i);
+    		if(auxNode->pElement == pElement){
+    			returnAux = 1;
+    			break;
+    		}
+    	}
+    }
     return returnAux;
 }
 

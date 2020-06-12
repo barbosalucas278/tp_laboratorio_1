@@ -28,7 +28,9 @@ int menu()
     printf("8. Guardar los datos de los empleados en el archivo data.csv (modo texto).\n");
     printf("9. Guardar los datos de los empleados en el archivo data.csv (modo binario).\n");
     printf("10. Salir\n");
-	getNumber(&option," ","ERROR, opcion incorrecta",1,10,2);
+	if(!getNumber(&option," ","ERROR, opcion incorrecta",1,10,2)){
+		option = 10;
+	}
 	return option;
 }
 

@@ -27,22 +27,22 @@ int main()
 	setbuf(stdout, NULL);
     int option = 0;
     LinkedList* listaEmpleados = ll_newLinkedList();
-
+    //Employee* pruebaEmp = NULL;
     do{
     	option = menu();
         switch(option)
         {
             case 1:
                 controller_loadFromText(DATA,listaEmpleados);
+                break;
+            case 2:
+            	controller_loadFromBinary(DATABIN,listaEmpleados);
                printf("CANTIDAD EN LISTA [%d]\n",ll_len(listaEmpleados));
-               /*for(int i=0;i<ll_len(listaEmpleados);i++){
+              /* for(int i=0;i<ll_len(listaEmpleados);i++){
             	  pruebaEmp = ll_get(listaEmpleados,i);
             	   printf("%6d %15s %6d %6d\n",pruebaEmp->id,pruebaEmp->nombre,
             			   pruebaEmp->horasTrabajadas,pruebaEmp->sueldo);
                }*/
-                break;
-            case 2:
-            	controller_loadFromBinary(DATABIN,listaEmpleados);
             	break;
             case 3:
             	controller_addEmployee(listaEmpleados);
