@@ -9,11 +9,12 @@
 static int submenuOrder();
 static int submenuSort();
 
-/** \brief Carga los datos de los empleados desde el archivo data.csv (modo texto).
+/** \brief Loads the employee data from the data.csv file (text mode).
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int (-1) Error [path pointer and pArrayListEmployee pointer are NULL]
+ * 				(1) is ok
  *
  */
 int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
@@ -21,28 +22,31 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 	int ret = -1;
 	FILE* file;
 	if (path != NULL && pArrayListEmployee != NULL) {
-		file = parser_openFileFromText(path);
+		system("cls");
+		file = openFileFromText(path);
 		if(file != NULL){
 			if(parser_EmployeeFromText(file,pArrayListEmployee)){
-				printf("Se cargo correctamente la lista [MODO TEXTO]");
+				printf("Se cargo correctamente la lista [MODO TEXTO]\n");
 				fclose(file);
+				system("pause");
 			}
 		}
 	}
     return ret;
 }
 
-/** \brief Carga los datos de los empleados desde el archivo data.csv (modo binario).
+/** \brief Loading employee data from the data.csv file (binary mode).
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
- *
+ * \return int (-1) Error [path pointer and pArrayListEmployee pointer are NULL]
+ * 				(1) is ok
  */
 int controller_loadFromBinary(char *path, LinkedList *pArrayListEmployee) {
 	int ret = -1;
 	FILE *file;
-	if (path != NULL && pArrayListEmployee != NULL) {
+	if (pArrayListEmployee != NULL) {
+		system("cls");
 		file = fopen(path, "rb");
 		if (file == NULL) {
 			printf("No se pudo abrir el archivo.");
@@ -51,6 +55,7 @@ int controller_loadFromBinary(char *path, LinkedList *pArrayListEmployee) {
 			if (parser_EmployeeFromBinary(file, pArrayListEmployee)) {
 				printf("Se cargo correctamente la lista [MODO BINARIO]");
 				fclose(file);
+				system("pause");
 			}else{
 				printf("ERROR");
 			}
@@ -60,36 +65,34 @@ int controller_loadFromBinary(char *path, LinkedList *pArrayListEmployee) {
 	return ret;
 }
 
-/** \brief Alta de empleados
+/** \brief Employee registration
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int (-1) Error [pArrayListEmployee pointer is NULL or failed to load the data]
+ * 				(1) is ok.
  *
  */
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
 	int ret = -1;
-	char bufferNombre[20];
-	int bufferHorasTrabajadas;
-	int bufferSueldo;
+	char bufferName[20];
+	int bufferHoursWorked;
+	int bufferSalary;
 	int bufferId;
-	Employee* newEmployee;
-
-
+	Employee* newEmployee = NULL;
+	system("cls");
 	if(pArrayListEmployee != NULL){
-		if(employee_dataRegistration(bufferNombre,&bufferHorasTrabajadas,&bufferSueldo)==-1){
+		if(employee_dataRegistration(bufferName,&bufferHoursWorked,&bufferSalary)==-1){
 			printf("No se pudo realizar la carga de los datos");
 			ret = -1;
 		}
 		else{
-			newEmployee = employee_new();
 			bufferId = ll_len(pArrayListEmployee);
-			newEmployee = employee_newAlta(bufferId,bufferNombre,bufferHorasTrabajadas,bufferSueldo);
+			newEmployee = employee_newRegistration(bufferId,bufferName,bufferHoursWorked,bufferSalary);
 			if(newEmployee != NULL){
 				ll_add(pArrayListEmployee,(Employee*)newEmployee);
 				printEmployee(newEmployee);
-
 				ret = 1;
 			}
 
@@ -101,153 +104,178 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 
 }
 
-/** \brief Modificar datos de empleado
+/** \brief Modify employee data
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
- *
+ * \return int (-1) Error [pArrayListEmployee pointer is NULL)
+ *				(1) Is ok.
  */
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
 	int ret = -1;
-	int lenLL;
 	int indexModify;
+	int idModify;
+	int auxId;
 	int set;
-	Employee* auxEmp = employee_new();
-	lenLL = ll_len(pArrayListEmployee);
-	if (getIndexFromId(&indexModify, lenLL)){
-		auxEmp = (Employee*)ll_get(pArrayListEmployee, indexModify);
-		printEmployee(auxEmp);
-		if(employee_modify(auxEmp)){
-			set = ll_set(pArrayListEmployee,indexModify,auxEmp);
-			printEmployee(auxEmp);
-			if(set==0){
-				ret = 1;
+	Employee* auxEmp = NULL;
+	int lenLL = ll_len(pArrayListEmployee);
+	int i;
+	system("cls");
+	if(pArrayListEmployee != NULL){
+		auxEmp = (Employee*)ll_get(pArrayListEmployee,lenLL-1);
+		employee_getId(auxEmp,&auxId);
+		if(getNumber(&idModify,"Ingrese el ID del empleado que desea modificar",
+						"Error ID invalido", 1, auxId, 2)){
+			for(i=0;i<lenLL;i++){
+				auxEmp = (Employee*)ll_get(pArrayListEmployee,i);
+				employee_getId(auxEmp,&auxId);
+				if(auxId == idModify && auxEmp != NULL){
+					indexModify = i;
+					printf("[%d]\n",i);
+					printEmployee(auxEmp);
+					if(employee_modify(auxEmp)){
+						set = ll_set(pArrayListEmployee,indexModify,auxEmp);
+						printEmployee(auxEmp);
+						if(set==0){
+							ret = 1;
+						}
+					break;
+					}
+				}
 			}
-
 		}
 	}
 
     return ret;
 }
 
-/** \brief Baja de empleado
+/** \brief employee removal
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
- *
+ * \return int (-1) Error [pArrayListEmployee pointer is NULL]
+ * 				(0) if remove is canceled.
+ *				(1) Is ok.
  */
 int controller_removeEmployee(LinkedList *pArrayListEmployee) {
 	int ret = -1;
 	int lenLL;
 	int indexDelete;
-	char respuesta[10];
-	Employee *auxEmp = employee_new();
+	int idDelete;
+	int auxId;
+	int i;
+	Employee *auxEmp = NULL;
+	system("cls");
 	lenLL = ll_len(pArrayListEmployee);
-	if (getIndexFromId(&indexDelete, lenLL)) {
-		auxEmp = (Employee*)ll_get(pArrayListEmployee, indexDelete);
+	if (pArrayListEmployee != NULL) {
+		getNumber(&idDelete,"Ingrese el ID del empleado que desea dar de baja",
+								"Error ID invalido", 1, lenLL, 2);
+		for(i=0;i<lenLL;i++){
+			auxEmp = (Employee*)ll_get(pArrayListEmployee,i);
+			employee_getId(auxEmp,&auxId);
+			if(auxId == idDelete){
+				indexDelete = i;
+				printf("[%d]\n",indexDelete);
+				break;
+			}
+		}
 		if (auxEmp != NULL) {
 			printEmployee(auxEmp);
-			getString(respuesta, "Confirma darlo de BAJA?\n [SI/NO]\n",
-					"Opcion incorrecta\n", 10, 2);
-			strupr(respuesta);
-			if (strcmp(respuesta, "SI") == 0) {
-				ll_remove(pArrayListEmployee, indexDelete);
-				employee_delete(auxEmp);
-				printf("BAJA hecha\n");
+			if(questionConfirm("BAJA CONFIRMADA","BAJA CANCELADA")){
+				ll_remove(pArrayListEmployee,indexDelete);
+				ret = 1;
+			}else{
 				ret = 0;
-			} else if (strcmp(respuesta, "NO") == 0) {
-				printf("BAJA anulada\n");
 			}
-
-			ret = 1;
 		}
 	}
-
-
-
 	return ret;
 }
 
-/** \brief Listar empleados
+/** \brief List employees
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
- *
+ * \return int (-1) Error [pArrayLisyEmployee pointer is NULL].
+ *				(1) Is ok.
  */
 int controller_ListEmployee(LinkedList* pArrayListEmployee)
 {
 	int ret = -1;
 	int i;
 	int lenLL;
-	Employee* auxEmp = employee_new();
+	Employee* auxEmp = NULL;
 	lenLL = ll_len(pArrayListEmployee);
-
-	for(i=0;i<lenLL;i++){
-		auxEmp = (Employee*)ll_get(pArrayListEmployee,i);
-		if(auxEmp != NULL){
-			printEmployee(auxEmp);
-			ret = 1;
+	system("cls");
+	if(pArrayListEmployee != NULL){
+		for(i=0;i<lenLL;i++){
+			auxEmp = (Employee*)ll_get(pArrayListEmployee,i);
+			if(auxEmp != NULL){
+				printEmployee(auxEmp);
+				printf("[%d]\n",i);
+				ret = 1;
+			}
 		}
 	}
-
+	system("pause");
     return ret;
 }
 
-/** \brief Ordenar empleados
+/** \brief Sort employees
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
- *
+ * \return int (-1) Error [pArrayListEmployee pointer is NULL].
+ *				(1) Is ok.
  */
 int controller_sortEmployee(LinkedList *pArrayListEmployee) {
 	int ret = -1;
 	int option;
 	int optionSort;
-	do {
-		option = submenuSort();
-		switch (option) {
-		case 1:
-			optionSort = submenuOrder();
-			if ((ll_sort(pArrayListEmployee, sortEmployeeBySalary,
-					optionSort))) {
-				ret = 1;
-			}
-				controller_ListEmployee(pArrayListEmployee);
-			break;
-		case 2:
-			optionSort = submenuOrder();
-			if ((ll_sort(pArrayListEmployee, sortEmployeeByWorkedHours,
-					optionSort))) {
-				ret = 1;
-			}
-				controller_ListEmployee(pArrayListEmployee);
-			break;
-		case 3:
-			optionSort = submenuOrder();
+	if(pArrayListEmployee != NULL){
+		do {
+			option = submenuSort();
+			switch (option) {
+			case 1:
+				optionSort = submenuOrder();
+				if ((ll_sort(pArrayListEmployee, sortEmployeeBySalary,
+						optionSort))) {
+					ret = 1;
+				}
+					controller_ListEmployee(pArrayListEmployee);
+				break;
+			case 2:
+				optionSort = submenuOrder();
+				if ((ll_sort(pArrayListEmployee, sortEmployeeByWorkedHours,
+						optionSort))) {
+					ret = 1;
+				}
+					controller_ListEmployee(pArrayListEmployee);
+				break;
+			case 3:
+				optionSort = submenuOrder();
 
-			if ((ll_sort(pArrayListEmployee, sortEmployeeById, optionSort))) {
-				ret = 1;
+				if ((ll_sort(pArrayListEmployee, sortEmployeeById, optionSort))) {
+					ret = 1;
+				}
+					controller_ListEmployee(pArrayListEmployee);
+				break;
+			case 4:
+				break;
 			}
-				controller_ListEmployee(pArrayListEmployee);
-			break;
-		case 4:
-			break;
-		}
-	} while (option != 4);
+		} while (option != 4);
+	}
 
 	return ret;
 }
 
-/** \brief Guarda los datos de los empleados en el archivo data.csv (modo texto).
+/** \brief Save employee data in data.csv file (text mode)
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int (-1) Error [pArrayListEmployee and path pointers are NULL].
+ * 			   (1) Is ok.
  *
  */
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
@@ -258,9 +286,9 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 
 	if(path != NULL && pArrayListEmployee != NULL){
 		lenLL = ll_len(pArrayListEmployee);
-		file = parser_WriteFlieFromText(path);
+		file = writeFileFromText(path);
 		 if(file != NULL){
-			 if(parser_saveAsText(file,pArrayListEmployee,lenLL)){
+			 if(saveAsText(file,pArrayListEmployee,lenLL)){
 				 printf("Guardado exitoso");
 				 fclose(file);
 				 ret = 1;
@@ -270,38 +298,40 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
     return ret;
 }
 
-/** \brief Guarda los datos de los empleados en el archivo data.csv (modo binario).
+/** \brief Save employee data in data.csv file (binary mode).
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
- *
+ * \return int (-1) Error [pArrayListEmployee and path pointers are NULL].
+ * 			   (1) Is ok.
  */
 int controller_saveAsBinary(char *path, LinkedList *pArrayListEmployee) {
 	int ret = -1;
 	FILE *file;
 	int lenLL = ll_len(pArrayListEmployee);
-	file = fopen(path, "wb");
-	if (file == NULL) {
-		printf("No se pudo abrir el documento para escribirlo\n");
-		fclose(file);
-	}
-	if (file != NULL) {
-		if (parser_saveAsBinary(file, pArrayListEmployee, lenLL)) {
-			printf("Guardado exitoso\n");
+	if(path != NULL && pArrayListEmployee != NULL){
+		file = fopen(path, "wb");
+		if (file == NULL) {
+			printf("No se pudo abrir el documento para escribirlo\n");
 			fclose(file);
-			ret = 1;
 		}
+		if (file != NULL) {
+			if (saveAsBinary(file, pArrayListEmployee, lenLL)) {
+				printf("Guardado exitoso\n");
+				fclose(file);
+				ret = 1;
+			}
 
+		}
 	}
 	return ret;
 }
 
 
 /*
+ *	\brief submenu for sort employees controller.
  *
- *
- *
+ *	\return int option value.
  */
 static int submenuSort()
 {
@@ -315,9 +345,9 @@ static int submenuSort()
 	return option;
 }
 /*
+ *\brief submenu to choose the sorting criteria
  *
- *
- *
+ *\return int option value.
  */
 static int submenuOrder()
 {

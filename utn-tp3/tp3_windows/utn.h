@@ -10,6 +10,7 @@
 #define LEN_ARRAY 4096 //ajustar el len de los arrays de string si se desea tener mayor espacio.
 #endif /* UTN_H_ */
 
+int questionConfirm(char* message, char* messageCancel);
 int menu();
 /*
  * \brief se utiliza para pedirle al usuario un numero decimal

@@ -14,8 +14,8 @@
 int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee);
 int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee);
 
-FILE* parser_openFileFromText(char* path);
-FILE* parser_WriteFlieFromText(char* path);
-int parser_saveAsText(FILE* pFile,LinkedList* pArrayListEmployee, int lenLL );
+FILE* openFileFromText(char* path);
+FILE* writeFileFromText(char* path);
+int saveAsText(FILE* pFile,LinkedList* pArrayListEmployee, int lenLL );
 
-int parser_saveAsBinary(FILE* pFile,LinkedList* pArrayList,int lenLL);
+int saveAsBinary(FILE* pFile,LinkedList* pArrayList,int lenLL);

@@ -11,6 +11,26 @@
 #include "utn.h"
 #define LEN_ARRAY 4096
 
+
+int questionConfirm(char* message, char* messageCancel){
+	char answer[10];
+	int ret = -1;
+	if(message != NULL && messageCancel != NULL){
+		getString(answer, "Confirma darlo de BAJA?\n [SI/NO]\n",
+							"Opcion incorrecta\n", 10, 2);
+		strupr(answer);
+		if (strcmp(answer, "SI") == 0) {
+			ret = 1;
+			printf("%s", message);
+		} else if (strcmp(answer, "NO") == 0) {
+			ret = 0;
+			printf("%s",messageCancel);
+		}
+	}
+
+	return ret;
+}
+
 /*
  * \brief funcion para crear un menu de opciones.
  * \return int retorna la opcion elegida.

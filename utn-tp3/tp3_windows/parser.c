@@ -4,20 +4,20 @@
 #include "LinkedList.h"
 #include "Employee.h"
 #include "parser.h"
-/** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo texto).
+/** \brief Parse data employee data from data.csv file (text mode).
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int (-1) Error [pFile pointer and pArrayListEmployee are NULL or fscanf can't read the file]
+ * 				(1) is ok.
  *
  */
 int parser_EmployeeFromText(FILE *pFile, LinkedList *pArrayListEmployee) {
-	int ret;
+	int ret = -1;
 	Employee *newEmployee;
 	char buffer[4][20];
 	int count;
 	if(pFile != NULL && pArrayListEmployee != NULL){
-		//"%[id],%[nombre],%[horasTrabajadas],%[sueldo]\n"
 		fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n]\n", buffer[0], buffer[1], buffer[2], buffer[3]);
 			while (!feof(pFile)) {
 				count = fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n]\n", buffer[0],
@@ -37,13 +37,13 @@ int parser_EmployeeFromText(FILE *pFile, LinkedList *pArrayListEmployee) {
 
 	return ret;
 }
-/*
+/*\brief opens file from text in read mode.
  *
- *
- *
+ * \param path char*
+ * \return FILE*
  *
  */
-FILE* parser_openFileFromText(char* path){
+FILE* openFileFromText(char* path){
 
 	FILE* file;
 	if(path != NULL){
@@ -56,13 +56,13 @@ FILE* parser_openFileFromText(char* path){
 	return file;
 }
 
-/*
+/*\brief opens file from text in write mode.
  *
- *
- *
+ * \param path char*
+ * \return FILE*
  *
  */
-FILE* parser_WriteFlieFromText(char* path){
+FILE* writeFileFromText(char* path){
 
 	FILE* file;
 	if(path != NULL){
@@ -74,31 +74,37 @@ FILE* parser_WriteFlieFromText(char* path){
 	return file;
 }
 /*
- *
- *
- *
- *
+ * \brief save information in the file.
+ *	\param pFile FILE*
+ *	\param pArrayListEmployee LinkedList*
+ *	\param lenLL int
+ *	\return (-1) Error [pFile and pArrayListEmployee pointers are NUL or lenLL less than 0].
+ *			(1)Is ok.
  */
 
-int parser_saveAsText(FILE *pFile, LinkedList *pArrayListEmployee, int lenLL) {
+int saveAsText(FILE *pFile, LinkedList *pArrayListEmployee, int lenLL) {
 	int ret = -1;
 	Employee *newEmployee = employee_new();
-
 	int i = 0;
-	fprintf(pFile,"id,nombre,horasTrabajadas,sueldo\n");
-	for (i = 0; i < lenLL; i++) {
-		newEmployee = (Employee*)ll_get(pArrayListEmployee, i);
-		fprintf(pFile,"%d,%s,%d,%d\n",newEmployee->id,newEmployee->nombre,
-				newEmployee->horasTrabajadas,newEmployee->sueldo);
-		ret = 1;
+
+	if(pFile != NULL && pArrayListEmployee != NULL && lenLL >=0){
+		fprintf(pFile,"id,nombre,horasTrabajadas,sueldo\n");
+		for (i = 0; i < lenLL; i++) {
+			newEmployee = (Employee*)ll_get(pArrayListEmployee, i);
+			fprintf(pFile,"%d,%s,%d,%d\n",newEmployee->id,newEmployee->name,
+					newEmployee->workedHours,newEmployee->salary);
+			ret = 1;
+		}
+
 	}
 	return ret;
 }
-/** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo binario).
+/** \brief Parse data employee data from file data.csv (binary mode).
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
- * \return int
+ * \return int (-1) Error [pFile pointer and pArrayListEmployee are NULL or fread can't read the file]
+ * 				(1) is ok.
  *
  */
 int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
@@ -117,6 +123,7 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 					system("pause");
 					break;
 				}else{
+					ret = -1;
 					printf("No se pudo leer el ultimo registro");
 					break;
 				}
@@ -129,7 +136,15 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
     return ret;
 }
 
-int parser_saveAsBinary(FILE* pFile,LinkedList* pArrayList,int lenLL){
+/*
+ * \brief save information in the file.
+ *	\param pFile FILE*
+ *	\param pArrayListEmployee LinkedList*
+ *	\param lenLL int
+ *	\return (-1) Error [pFile and pArrayListEmployee pointers are NUL or lenLL less than 0].
+ *			(1)Is ok.
+ */
+int saveAsBinary(FILE* pFile,LinkedList* pArrayList,int lenLL){
 	int ret = -1;
 	Employee *newEmployee = employee_new();
 	int i = 0;

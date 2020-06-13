@@ -6,18 +6,18 @@
 
 
 /*
- *
- *
+ *\brief create a new employee by reserving dynamic memory
+ *\return Employee* if ok
+ *\return NULL if haven't memory.
  *
  */
 Employee* employee_new(){
 	Employee* this = (Employee*) malloc(sizeof(Employee));
 	if(this != NULL)
 	{
-
-		employee_setNombre(this,"");
-		employee_setHorasTrabajadas(this,0);
-		employee_setSueldo(this,0);
+		employee_setName(this,"");
+		employee_setWorkedHours(this,0);
+		employee_setSalary(this,0);
 	}
 	else
 	{
@@ -27,126 +27,127 @@ Employee* employee_new(){
 }
 
 /*
- *
- *
- *
+ *\brief create a new employee with parameters.
+ *\param id char*
+ *\param name char*
+ *\param hoursWorked char*
+ *\param salary char*
+ *\return Employee*
  */
-Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr,char* sueldoStr){
+Employee* employee_newParametros(char* idStr,char* nameStr,char* workedHoursStr,char* salaryStr){
 	Employee* newEmployee = employee_new();
-	if(idStr != NULL && nombreStr != NULL && horasTrabajadasStr != NULL && sueldoStr != NULL){
+	if(idStr != NULL && nameStr != NULL && workedHoursStr != NULL && salaryStr != NULL){
 		employee_setId(newEmployee,atoi(idStr));
-		employee_setNombre(newEmployee,nombreStr);
-		employee_setHorasTrabajadas(newEmployee,atoi(horasTrabajadasStr));
-		employee_setSueldo(newEmployee,atoi(sueldoStr));
+		employee_setName(newEmployee,nameStr);
+		employee_setWorkedHours(newEmployee,atoi(workedHoursStr));
+		employee_setSalary(newEmployee,atoi(salaryStr));
 	}
 
 	return newEmployee;
 }
 /*
- *
- *
- *
+ *\brief create a new employee record.
+ *\param id int
+ *\param name char*
+ *\param hoursWorked int
+ *\param salary int
+ *\return Employee*
  */
-Employee* employee_newAlta(int id,char* nombre, int horasTrabajadas, int sueldo){
+Employee* employee_newRegistration(int id,char* name, int workedHours, int salary){
 	Employee* newEmployee = employee_new();
-	if(id >=0 && nombre != NULL && horasTrabajadas > 0 && sueldo > 0){
+	if(id >=0 && name != NULL && workedHours > 0 && salary > 0){
 		employee_setId(newEmployee,id);
-		employee_setNombre(newEmployee,nombre);
-		employee_setHorasTrabajadas(newEmployee,horasTrabajadas);
-		employee_setSueldo(newEmployee,sueldo);
+		employee_setName(newEmployee,name);
+		employee_setWorkedHours(newEmployee,workedHours);
+		employee_setSalary(newEmployee,salary);
 	}
 	return newEmployee;
 }
 /*
- *
- *
- *
+ *\brief asks the user to enter the information for the new employee.
+ *\param pName char*
+ *\param pHoursWordked int*
+ *\param pSalary int*
+ *\return int
  */
-int employee_dataRegistration(char* pNombre,int* pHorasTrabajadas,int* pSueldo){
+int employee_dataRegistration(char* pName,int* pHoursWordked,int* pSalary){
 	int ret = -1;
-	char bufferNombre[20];
-	int bufferHorasTrabajadas;
-	int bufferSueldo;
-		if(pNombre != NULL && pHorasTrabajadas != NULL && pSueldo != NULL){
-			if(getNameEmployee(bufferNombre)&&
-			getHorasTrabajadasEmployee(&bufferHorasTrabajadas)&&
-			getSueldoEmployee(&bufferSueldo)){
-				strcpy(pNombre,bufferNombre);
-				*pHorasTrabajadas = bufferHorasTrabajadas;
-				*pSueldo = bufferSueldo;
+	char bufferName[20];
+	int bufferHoursWorked;
+	int bufferSalary;
+		if(pName != NULL && pHoursWordked != NULL && pSalary != NULL){
+			if(getFromABMName(bufferName)&&
+			getFromABMWorkedHours(&bufferHoursWorked)&&
+			getFromABMSalary(&bufferSalary)){
+				strcpy(pName,bufferName);
+				*pHoursWordked = bufferHoursWorked;
+				*pSalary = bufferSalary;
 				ret = 1;
 			}
 		}
 
 	return ret;
 }
-/*
- *
- *
+/* \brief function to request new information from the employee
+ *\param this Employee*
+ *\return int (-1) Error [this pointer is NULL]
+ *			(1) is OK.
  *
  */
 int employee_modify(Employee* this){
 	int ret = -1;
 	char bufferName[20];
-	int bufferHoras;
-	int bufferSueldo;
+	int bufferHours;
+	int bufferSalary;
 	int option;
-	char answer[10];
-	do{
-		option = submenuModidy();
-		switch(option){
-		case 1:
-			getNameEmployee(bufferName);
-			getString(answer, "Confirma la MODIFICACION?\n [SI/NO]\n",
-					"Opcion incorrecta\n", 10, 2);
-			strupr(answer);
-			if (strcmp(answer, "SI") == 0) {
-				employee_setNombre(this,bufferName);
-				printf("MODIFICACION hecha\n");
-				ret = 1;
-			} else if (strcmp(answer, "NO") == 0) {
-				printf("MODIFICACION anulada\n");
+
+	if(this != NULL){
+		do{
+			option = submenuModidy();
+			switch(option){
+			case 1:
+				getFromABMName(bufferName);
+				if (questionConfirm("MODIFICACION HECHA\n","MODIFICACION CANCELADA\n")) {
+					employee_setName(this,bufferName);
+
+					option = 4;
+					ret = 1;
+					system("pause");
+				}
+				break;
+			case 2:
+				getFromABMWorkedHours(&bufferHours);
+				if (questionConfirm("MODIFICACION HECHA\n","MODIFICACION CANCELADA\n")) {
+					employee_setWorkedHours(this,bufferHours);
+					ret = 1;
+					option = 4;
+					system("pause");
+				}
+				break;
+			case 3:
+				getFromABMSalary(&bufferSalary);
+				if (questionConfirm("MODIFICACION HECHA\n","MODIFICACION CANCELADA\n")) {
+					employee_setSalary(this,bufferSalary);
+					ret = 1;
+					option = 4;
+					system("pause");
+				}
+				break;
+			case 4:
+				break;
 			}
-			break;
-		case 2:
-			getHorasTrabajadasEmployee(&bufferHoras);
-			getString(answer, "Confirma la MODIFICACION?\n [SI/NO]\n",
-					"Opcion incorrecta\n", 10, 2);
-			strupr(answer);
-			if (strcmp(answer, "SI") == 0) {
-				employee_setHorasTrabajadas(this,bufferHoras);
-				printf("MODIFICACION hecha\n");
-				ret = 1;
-			} else if (strcmp(answer, "NO") == 0) {
-				printf("MODIFICACION anulada\n");
-			}
-			break;
-		case 3:
-			getSueldoEmployee(&bufferSueldo);
-			getString(answer, "Confirma la MODIFICACION?\n [SI/NO]\n",
-					"Opcion incorrecta\n", 10, 2);
-			strupr(answer);
-			if (strcmp(answer, "SI") == 0) {
-				employee_setSueldo(this,bufferSueldo);
-				printf("MODIFICACION hecha\n");
-				ret = 1;
-			} else if (strcmp(answer, "NO") == 0) {
-				printf("MODIFICACION anulada\n");
-			}
-			break;
-		case 4:
-			break;
-		}
-	}while(option != 4);
+		}while(option != 4);
+
+	}
 
 
 
 	return ret;
 }
 /*
+ *\brief submenu to choose the modify
  *
- *
- *
+ *\return int option value.
  */
 int submenuModidy()
 {
@@ -160,72 +161,81 @@ int submenuModidy()
 	return option;
 }
 /*
- *
- *
- *
+ *	\brief  get by ABM the name of employee.
+ *	\param name char*
+ *	\return int (-1) Error [name pointer is NULL]
+ *				(1) Is ok.
  */
-int getNameEmployee (char* name){
+int getFromABMName (char* name){
 	int ret = -1;
 	char axuName[20];
+	if(name != NULL){
+		if(getString(axuName,"Ingrese el nombre","Error, nombre invalido",20,2)){
+			strcpy(name,axuName);
+			ret = 1;
+		}
 
-	if(getString(axuName,"Ingrese el nombre","Error, nombre invalido",20,2)){
-		strcpy(name,axuName);
-		ret = 1;
 	}
 
 
 	return ret;
 }
 /*
- *
- *
- *
+ *	\brief  get by ABM the name of employee.
+ *	\param pWorkedHours int*
+ *	\return int (-1) Error [pWorkedHours pointer is NULL]
+ *				(1) Is ok.
  */
-int getHorasTrabajadasEmployee(int* pHorasTrabajadas){
+int getFromABMWorkedHours(int* pWorkedHours){
 	int ret = -1;
-	int auxHoras;
+	int auxHours;
+	if(pWorkedHours != NULL){
+		if(getNumber(&auxHours,"Ingrese la horas trabajadas","Error, horas invalidas",1,325,2)){
+			*pWorkedHours = auxHours;
+			ret = 1;
+		}
 
-	if(getNumber(&auxHoras,"Ingrese la horas trabajadas","Error, horas invalidas",1,325,2)){
-		*pHorasTrabajadas = auxHoras;
-		ret = 1;
 	}
 
 	return ret;
 }
 /*
- *
- *
- *
+ *	\brief  get by ABM the name of employee.
+ *	\param pSalary int*
+ *	\return int (-1) Error [pSalary pointer is NULL]
+ *				(1) Is ok.
  */
-int getSueldoEmployee(int* pSueldo){
+int getFromABMSalary(int* pSalary){
 	int ret = -1;
-	int auxSueldo;
+	int auxSalary;
+	if(pSalary !=  NULL){
+		if(getNumber(&auxSalary,"Ingrese el sueldo","Error, horas invalidas",1,65000,2)){
+			*pSalary = auxSalary;
+			ret = 1;
+		}
 
-	if(getNumber(&auxSueldo,"Ingrese el sueldo","Error, horas invalidas",1,65000,2)){
-		*pSueldo = auxSueldo;
-		ret = 1;
 	}
 
 	return ret;
 }
 /*
- *
- *
- *
+ *	\brief  set id of the employee.
+ *	\param this Employee*
+ *	\param id int
+ *	\return int (-1) Error [this pointer is NULL]
+ *				(0) Is ok.
  */
 int employee_setId(Employee *this, int id) {
 	int ret = -1;
-	static int maximoId = -1;
+	static int maxId = -1;
 	if(this != NULL){
 		ret = 0;
-		if(id < 0 || id <maximoId){
-			maximoId++;
-			this->id = maximoId;
-			printf("DEBUG 1 [%d]\n",maximoId);
+		if(id < 0 || id <maxId || id == maxId){
+			maxId++;
+			this->id = maxId;
 		}else{
-			if(id > maximoId){
-				maximoId = id;
-				printf("DEBUG 2 [%d]\n",maximoId);
+			if(id > maxId){
+				maxId = id;
 			}
 				this->id = id;
 		}
@@ -233,9 +243,11 @@ int employee_setId(Employee *this, int id) {
 return ret;
 }
 /*
- *
- *
- *
+ *	\brief  get id of the employee.
+ *	\param this Employee*
+ *	\param id int*
+ *	\return int (-1) Error [this and id pointers are NULL]
+ *				(1) Is ok.
  */
 int employee_getId(Employee* this,int* id){
 	int ret = -1;
@@ -247,151 +259,161 @@ int employee_getId(Employee* this,int* id){
 }
 
 /*
- *
- *
- *
+ *	\brief  set name of the employee.
+ *	\param this Employee*
+ *	\param id int
+ *	\return int (-1) Error [this pointer is NULL]
+ *				(1) Is ok.
  */
-int employee_setNombre(Employee* this,char* nombre){
+int employee_setName(Employee* this,char* name){
 	int ret = -1;
-	if(this != NULL && nombre != NULL){
-		strcpy(this->nombre,nombre);
+	if(this != NULL && name != NULL){
+		strcpy(this->name,name);
 		ret = 1;
 	}
 	return ret;
 }
 /*
- *
- *
- *
+ *	\brief  get name of the employee.
+ *	\param this Employee*
+ *	\param id int*
+ *	\return int (-1) Error [this and name pointers are NULL]
+ *				(1) Is ok.
  */
-int employee_getNombre(Employee* this,char* nombre){
+int employee_getName(Employee* this,char* name){
 	int ret = -1;
-	if(this != NULL && nombre != NULL){
-		strcpy(nombre,this->nombre);
+	if(this != NULL && name != NULL){
+		strcpy(name,this->name);
 		ret = 1;
 	}
 
 	return ret;
 }
 /*
-*
-*
+ *	\brief  set workedHours of the employee.
+ *	\param this Employee*
+ *	\param id int
+ *	\return int (-1) Error [this pointer is NULL]
+ *				(1) Is ok.
+ */
+int employee_setWorkedHours(Employee* this,int workedHours){
+	int ret = -1;
+	if(this != NULL && workedHours >0){
+		this->workedHours = workedHours;
+
+		ret = 1;
+	}
+	return ret;
+}
+/*
+ *	\brief  get workedHours of the employee.
+ *	\param this Employee*
+ *	\param id int*
+ *	\return int (-1) Error [this and workedHours pointers are NULL]
+ *				(1) Is ok.
+ */
+int employee_getWorkedHours(Employee* this,int* workedHours){
+	int ret = -1;
+	if(this != NULL && workedHours!= NULL){
+		*workedHours = this->workedHours;
+		ret = 1;
+	}
+	return ret;
+}
+/*
+ *	\brief  set salary of the employee.
+ *	\param this Employee*
+ *	\param id int
+ *	\return int (-1) Error [this pointer is NULL]
+ *				(1) Is ok.
+ */
+int employee_setSalary(Employee* this,int salary){
+	int ret = -1;
+	if(this != NULL && salary >0){
+		this->salary = salary;
+		ret = 1;
+	}
+	return ret;
+}
+/*
+ *	\brief  get salary of the employee.
+ *	\param this Employee*
+ *	\param id int*
+ *	\return int (-1) Error [this and salary pointers are NULL]
+ *				(1) Is ok.
+ */
+int employee_getSalary(Employee* this,int* salary){
+	int ret = -1;
+	if(this != NULL && salary != NULL){
+		*salary = this->salary;
+		ret = 1;
+	}
+	return ret;
+}
+/*\brief print an employee
+ *\param this LinkedList*
+ *\return int (-1) Error [if pointer this is NULL]
+ *			  (1) if ok.
+ *
 */
-int employee_setHorasTrabajadas(Employee* this,int horasTrabajadas){
-	int ret = -1;
-	if(this != NULL && horasTrabajadas >0){
-		this->horasTrabajadas = horasTrabajadas;
-		ret = 1;
-	}
-	return ret;
-}
-/*
- *
- *
- *
- *
- */
-int employee_getHorasTrabajadas(Employee* this,int* horasTrabajadas){
-	int ret = -1;
-	if(this != NULL && horasTrabajadas!= NULL){
-		*horasTrabajadas = this->horasTrabajadas;
-		ret = 1;
-	}
-	return ret;
-}
-/*
- *
- *
- *
- */
-int employee_setSueldo(Employee* this,int sueldo){
-	int ret = -1;
-	if(this != NULL && sueldo >0){
-		this->sueldo = sueldo;
-		ret = 1;
-	}
-	return ret;
-}
-/*
- *
- *
- *
- */
-int employee_getSueldo(Employee* this,int* sueldo){
-	int ret = -1;
-	if(this != NULL && sueldo != NULL){
-		*sueldo = this->sueldo;
-		ret = 1;
-	}
-	return ret;
-}
 int printEmployee(Employee *this){
 	int ret = -1;
 	if(this != NULL){
-		printf("%6d %15s %6d %6d\n",this->id,this->nombre,
-				this->horasTrabajadas,this->sueldo);
+		printf("%6d %15s %6d %6d\n",this->id,this->name,
+				this->workedHours,this->salary);
 		ret =1;
 	}
 
 	return ret;
 }
-int getIndexFromId(int *pIndex, int lenLL) {
-	int ret = -1;
-	int bufferId;
-	if (pIndex != NULL && lenLL > 0) {
-		if (getNumber(&bufferId,
-				"Ingrese el ID del empleado que desea dar de baja",
-				"Error ID invalido", 1, lenLL, 2)) {
-			*pIndex = bufferId-1;
-			ret = 1;
-		}
-	}
 
-	return ret;
-}
-/*
- *
- *
- *
+/* \brief sort employees by salary
+ * \param employee1 void*
+ * \param employee2 void*
+ * \return int (0) [employee1 and employee2 pointers are NULL or equal]
+ *			   (1) [employee1 is higher than employee2].
+ *			   (-1)[employee2 is higher than emploee1].
  */
 int sortEmployeeBySalary(void* employee1, void* employee2){
 	int ret = 0;
-	int bufferSueldo1;
-	int bufferSueldo2;
+	int bufferSalary1;
+	int bufferSalary2;
 
-	employee_getSueldo(employee1,&bufferSueldo1);
-	employee_getSueldo(employee2,&bufferSueldo2);
+	employee_getSalary(employee1,&bufferSalary1);
+	employee_getSalary(employee2,&bufferSalary2);
 
 	if(employee1  != NULL && employee2 != NULL){
-		if(bufferSueldo1 > bufferSueldo2){
+		if(bufferSalary1 > bufferSalary2){
 			ret = 1;
-		}else if(bufferSueldo2 > bufferSueldo1){
+		}else if(bufferSalary2 > bufferSalary1){
 			ret = -1;
-		}else if(bufferSueldo1 == bufferSueldo2){
+		}else if(bufferSalary1 == bufferSalary2){
 			ret = 0;
 		}
 	}
 
 	return ret;
 }
-/*
- *
- *
- *
+/* \brief sort employees by worked hours.
+ * \param employee1 void*
+ * \param employee2 void*
+ * \return int (0) [employee1 and employee2 pointers are NULL or equal]
+ *			   (1) [employee1 is higher than employee2].
+ *			   (-1)[employee2 is higher than emploee1].
  */
 int sortEmployeeByWorkedHours(void* employee1, void* employee2){
 	int ret = 0;
-	int bufferHoras1;
-	int bufferHoras2;
+	int bufferHours1;
+	int bufferHours2;
 
-	employee_getHorasTrabajadas(employee1,&bufferHoras1);
-	employee_getHorasTrabajadas(employee2,&bufferHoras2);
+	employee_getWorkedHours(employee1,&bufferHours1);
+	employee_getWorkedHours(employee2,&bufferHours2);
 	if(employee1  != NULL && employee2 != NULL){
-		if(bufferHoras1 > bufferHoras2){
+		if(bufferHours1 > bufferHours2){
 			ret = 1;
-		}else if(bufferHoras2 > bufferHoras1){
+		}else if(bufferHours2 > bufferHours1){
 			ret = -1;
-		}else if(bufferHoras2 == bufferHoras1){
+		}else if(bufferHours2 == bufferHours1){
 			ret = 0;
 		}
 
@@ -399,10 +421,12 @@ int sortEmployeeByWorkedHours(void* employee1, void* employee2){
 
 	return ret;
 }
-/*
- *
- *
- *
+/* \brief sort employees by id.
+ * \param employee1 void*
+ * \param employee2 void*
+ * \return int (0) [employee1 and employee2 pointers are NULL or equal]
+ *			   (1) [employee1 is higher than employee2].
+ *			   (-1)[employee2 is higher than emploee1].
  */
 int sortEmployeeById(void* employee1, void* employee2){
 	int ret = 0;
@@ -422,9 +446,9 @@ int sortEmployeeById(void* employee1, void* employee2){
 	return ret;
 }
 /*
- *
- *
- *
+ * \brief free reserved memory from employee.
+ * \param this Employee*
+ * \return int (-1) Error [this pointer is NULL]
  */
 int employee_delete(Employee* this){
 	int ret = -1;
