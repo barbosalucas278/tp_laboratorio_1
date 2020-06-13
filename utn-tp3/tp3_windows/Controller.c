@@ -132,7 +132,6 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 				employee_getId(auxEmp,&auxId);
 				if(auxId == idModify && auxEmp != NULL){
 					indexModify = i;
-					printf("[%d]\n",i);
 					printEmployee(auxEmp);
 					if(employee_modify(auxEmp)){
 						set = ll_set(pArrayListEmployee,indexModify,auxEmp);
@@ -174,21 +173,19 @@ int controller_removeEmployee(LinkedList *pArrayListEmployee) {
 		for(i=0;i<lenLL;i++){
 			auxEmp = (Employee*)ll_get(pArrayListEmployee,i);
 			employee_getId(auxEmp,&auxId);
-			if(auxId == idDelete){
+			if(auxId == idDelete && auxEmp != NULL){
 				indexDelete = i;
-				printf("[%d]\n",indexDelete);
+				printEmployee(auxEmp);
+				if(questionConfirm("BAJA CONFIRMADA","BAJA CANCELADA")){
+								ll_remove(pArrayListEmployee,indexDelete);
+								ret = 1;
+							}else{
+								ret = 0;
+							}
 				break;
 			}
 		}
-		if (auxEmp != NULL) {
-			printEmployee(auxEmp);
-			if(questionConfirm("BAJA CONFIRMADA","BAJA CANCELADA")){
-				ll_remove(pArrayListEmployee,indexDelete);
-				ret = 1;
-			}else{
-				ret = 0;
-			}
-		}
+
 	}
 	return ret;
 }
@@ -213,7 +210,6 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
 			auxEmp = (Employee*)ll_get(pArrayListEmployee,i);
 			if(auxEmp != NULL){
 				printEmployee(auxEmp);
-				printf("[%d]\n",i);
 				ret = 1;
 			}
 		}
@@ -233,30 +229,38 @@ int controller_sortEmployee(LinkedList *pArrayListEmployee) {
 	int ret = -1;
 	int option;
 	int optionSort;
+	system("cls");
 	if(pArrayListEmployee != NULL){
 		do {
+			system("cls");
 			option = submenuSort();
 			switch (option) {
 			case 1:
+				system("cls");
 				optionSort = submenuOrder();
 				if ((ll_sort(pArrayListEmployee, sortEmployeeBySalary,
 						optionSort))) {
+					option = 4;
 					ret = 1;
 				}
 					controller_ListEmployee(pArrayListEmployee);
 				break;
 			case 2:
+				system("cls");
 				optionSort = submenuOrder();
 				if ((ll_sort(pArrayListEmployee, sortEmployeeByWorkedHours,
 						optionSort))) {
+					option = 4;
 					ret = 1;
 				}
 					controller_ListEmployee(pArrayListEmployee);
 				break;
 			case 3:
+				system("cls");
 				optionSort = submenuOrder();
 
 				if ((ll_sort(pArrayListEmployee, sortEmployeeById, optionSort))) {
+					option = 4;
 					ret = 1;
 				}
 					controller_ListEmployee(pArrayListEmployee);
@@ -266,7 +270,7 @@ int controller_sortEmployee(LinkedList *pArrayListEmployee) {
 			}
 		} while (option != 4);
 	}
-
+	system("pause");
 	return ret;
 }
 
@@ -283,17 +287,21 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 	int ret = -1;
 	FILE* file;
 	int lenLL;
+	lenLL = ll_len(pArrayListEmployee);
 
-	if(path != NULL && pArrayListEmployee != NULL){
-		lenLL = ll_len(pArrayListEmployee);
+	if(path != NULL && pArrayListEmployee != NULL && lenLL >0){
+		system("cls");
 		file = writeFileFromText(path);
 		 if(file != NULL){
 			 if(saveAsText(file,pArrayListEmployee,lenLL)){
-				 printf("Guardado exitoso");
+				 printf("Guardado exitoso\n");
 				 fclose(file);
+				 system("pause");
 				 ret = 1;
 			 }
 		 }
+	}else{
+		printf("Primero debe agregar empleados a la lista\n");
 	}
     return ret;
 }
@@ -309,7 +317,8 @@ int controller_saveAsBinary(char *path, LinkedList *pArrayListEmployee) {
 	int ret = -1;
 	FILE *file;
 	int lenLL = ll_len(pArrayListEmployee);
-	if(path != NULL && pArrayListEmployee != NULL){
+	if(path != NULL && pArrayListEmployee != NULL && lenLL >0){
+		system("cls");
 		file = fopen(path, "wb");
 		if (file == NULL) {
 			printf("No se pudo abrir el documento para escribirlo\n");
@@ -319,10 +328,13 @@ int controller_saveAsBinary(char *path, LinkedList *pArrayListEmployee) {
 			if (saveAsBinary(file, pArrayListEmployee, lenLL)) {
 				printf("Guardado exitoso\n");
 				fclose(file);
+				system("pause");
 				ret = 1;
 			}
 
 		}
+	}else{
+		printf("Primero debe agregar empleados a la lista\n");
 	}
 	return ret;
 }
@@ -352,8 +364,8 @@ static int submenuSort()
 static int submenuOrder()
 {
 	int option;
-    printf("1. Ascendente\n");
-    printf("2. Descendente\n");
+    printf("1. Descendente\n");
+    printf("2. Ascendente\n");
     printf("3. Volver\n");
 
 	getNumber(&option,"¿Cómo lo desea desea ordenar? ","ERROR, opcion incorrecta",1,3,2);

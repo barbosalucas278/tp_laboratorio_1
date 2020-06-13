@@ -26,6 +26,7 @@ int main()
 {
 	setbuf(stdout, NULL);
     int option = 0;
+    int controller = 0;
     LinkedList* listaEmpleados = ll_newLinkedList();
 
     do{
@@ -34,26 +35,54 @@ int main()
         switch(option)
         {
             case 1:
-                controller_loadFromText(DATA,listaEmpleados);
+                if(controller_loadFromText(DATA,listaEmpleados) && controller == 0){
+                	controller = 1;
+                }else{
+            		printf("ya se cargó la nomina de empleados\n");
+            	}
                 break;
             case 2:
-            	controller_loadFromBinary(DATABIN,listaEmpleados);
+            	if(controller_loadFromBinary(DATABIN,listaEmpleados) && controller == 0){
+            		controller = 1;
+            	}else{
+            		printf("ya se cargó la nomina de empleados\n");
+            	}
             	break;
             case 3:
-            	controller_addEmployee(listaEmpleados);
+            	if(controller == 1){
+					controller_addEmployee(listaEmpleados);
+            	}else{
+            		printf("Primero tiene que cargar la nomina de empleados\n");
+            	}
             	break;
             case 4:
+            	if(controller == 1){
             	controller_editEmployee(listaEmpleados);
+            	}else{
+            		printf("Primero tiene que cargar la nomina de empleados\n");
+            	}
             	break;
             case 5:
+            	if(controller == 1){
             	controller_ListEmployee(listaEmpleados);
             	controller_removeEmployee(listaEmpleados);
+            	}else{
+            	    printf("Primero tiene que cargar la nomina de empleados\n");
+            	}
             	break;
             case 6:
+            	if(controller == 1){
             	controller_ListEmployee(listaEmpleados);
+            	}else{
+            	    printf("Primero tiene que cargar la nomina de empleados\n");
+            	}
             	break;
             case 7:
+            	if(controller == 1){
             	controller_sortEmployee(listaEmpleados);
+            	}else{
+            	    printf("Primero tiene que cargar la nomina de empleados\n");
+            	}
             	break;
             case 8:
             	controller_saveAsText(DATA,listaEmpleados);

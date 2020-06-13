@@ -76,11 +76,21 @@ int employee_dataRegistration(char* pName,int* pHoursWordked,int* pSalary){
 	int bufferHoursWorked;
 	int bufferSalary;
 		if(pName != NULL && pHoursWordked != NULL && pSalary != NULL){
-			if(getFromABMName(bufferName)&&
-			getFromABMWorkedHours(&bufferHoursWorked)&&
-			getFromABMSalary(&bufferSalary)){
+			if(getFromABMName(bufferName)==-1){
+				ret = -1;
+			}else{
 				strcpy(pName,bufferName);
+				ret = 1;
+			}
+			if(getFromABMWorkedHours(&bufferHoursWorked)==-1){
+				ret = -1;
+			}else{
 				*pHoursWordked = bufferHoursWorked;
+				ret = 1;
+			}
+			if(getFromABMSalary(&bufferSalary)==-1){
+				ret = -1;
+			}else{
 				*pSalary = bufferSalary;
 				ret = 1;
 			}
@@ -168,13 +178,12 @@ int submenuModidy()
  */
 int getFromABMName (char* name){
 	int ret = -1;
-	char axuName[20];
+	char auxName[20];
 	if(name != NULL){
-		if(getString(axuName,"Ingrese el nombre","Error, nombre invalido",20,2)){
-			strcpy(name,axuName);
+		if(getString(auxName,"Ingrese el nombre","Error, nombre invalido",20,2)){
+			strcpy(name,auxName);
 			ret = 1;
 		}
-
 	}
 
 
@@ -191,8 +200,8 @@ int getFromABMWorkedHours(int* pWorkedHours){
 	int auxHours;
 	if(pWorkedHours != NULL){
 		if(getNumber(&auxHours,"Ingrese la horas trabajadas","Error, horas invalidas",1,325,2)){
-			*pWorkedHours = auxHours;
-			ret = 1;
+				*pWorkedHours = auxHours;
+				ret = 1;
 		}
 
 	}
@@ -207,7 +216,7 @@ int getFromABMWorkedHours(int* pWorkedHours){
  */
 int getFromABMSalary(int* pSalary){
 	int ret = -1;
-	int auxSalary;
+	int auxSalary = -1;
 	if(pSalary !=  NULL){
 		if(getNumber(&auxSalary,"Ingrese el sueldo","Error, horas invalidas",1,65000,2)){
 			*pSalary = auxSalary;

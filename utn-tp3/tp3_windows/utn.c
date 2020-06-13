@@ -11,7 +11,14 @@
 #include "utn.h"
 #define LEN_ARRAY 4096
 
-
+/*
+ * \brief confirmation function
+ * \param message char*
+ * \param messageError char*
+ * \return int (0) for not.
+ * 			   (1) for yes.
+ * 			   (-1) Error [message and messageError pointers are NULL].
+ * */
 int questionConfirm(char* message, char* messageCancel){
 	char answer[10];
 	int ret = -1;
@@ -364,6 +371,10 @@ int getString (char* cadena, char* mensaje, char* mensajeError, int len, int rei
 			{
 				reintentos--;
 				printf("%s",mensajeError);
+			}
+			if(reintentos==0){
+				ret = 0;
+				break;
 			}
 		}
 		if(reintentos > 0)
