@@ -478,8 +478,45 @@ void menuSort(eEmployee *list, int len, int id) {
 }
 
 
+/*
+if(this != NULL && pFunc != NULL && (order == 1 || order == 0) && lenLL > 0)
+switch(order){
+    	case 0://ascendente
+    		do{
+    			flagSwap = 0;
+    			for(i=0;i<lenLL-1;i++){
+    				pElement1 = ll_get(this,i);
+    				pElement2 = ll_get(this,i+1);
+					r = pFunc(pElement1,pElement2);
+					if(r == -1){
+						pAux = pElement1;
+						ll_set(this,i,pElement2);
+						ll_set(this,i+1,pAux);
+						flagSwap = 1;
+					}
+				}
+				lenLL--;
+    		}while(flagSwap);
+			returnAux = 0;
+    		break;
+    	case 1://descendente
+    		do{
+    			flagSwap = 0;
+				for(i=0;i<lenLL-1;i++){
+					pElement1 = ll_get(this,i);
+					pElement2 = ll_get(this,i+1);
+					r = pFunc(pElement1,pElement2);
+					if( r == 1){
+						pAux = pElement1;
+						ll_set(this,i,pElement2);
+						ll_set(this,i+1,pAux);
+						flagSwap = 1;
+					}
+				}
+				lenLL--;
+    		}while(flagSwap);
+			returnAux = 0;
+    		break;
+    	}
 
-
-
-
-
+*/

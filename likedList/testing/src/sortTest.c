@@ -82,7 +82,7 @@ void sortTestCase02(void)
 
     for(i=0; i < LENGTH; i++)
     {
-        pAuxGet[i] = ll_get(list,i);
+		pAuxGet[i] = ll_get(list,i);
         utest_assertNotNullMsg(pAuxGet[i],"Error al intentar obtener un elemento luego de ordenar");
         utest_assertEqualsFloatMsg(((Employee*)pAuxGet[i])->salary,salarySortedUp[i],"El orden de la lista es incorrecto");
     }
