@@ -173,14 +173,9 @@ int ll_add(LinkedList* this, void* pElement)
     int returnAux = -1;
     int lenLL = ll_len(this);
     if(this != NULL){
-    	if(lenLL == 0){
-    		addNode(this,0,pElement);
-    		returnAux = 0;
-    	}else{
-    		addNode(this,lenLL,pElement);
+    	if(!addNode(this,lenLL,pElement)){
     		returnAux = 0;
     	}
-
     }
     return returnAux;
 }
@@ -296,7 +291,6 @@ int ll_remove(LinkedList* this,int index) //9
     			this->pFirstNode = auxNode2;
     			this->size--;
 				returnAux = 0;
-
     		}
     	}else {
     		auxNode = getNode(this,index+1);
@@ -432,7 +426,7 @@ int ll_push(LinkedList* this, int index, void* pElement)
     if(this != NULL && index >= 0 && index <=lenLL){
     	auxNode = getNode(this, index);
     	if(auxNode == NULL){
-			ll_add(this,pElement);
+			addNode(this,index,pElement);
 			returnAux = 0;
     		}
         }
@@ -450,7 +444,7 @@ int ll_push(LinkedList* this, int index, void* pElement)
  */
 void* ll_pop(LinkedList* this,int index)//9
 {
-	int lenLL = ll_len(this);//10
+	int lenLL = ll_len(this);
     void* returnAux = NULL;
     Node* auxNode = NULL;
     int i;
@@ -480,19 +474,14 @@ void* ll_pop(LinkedList* this,int index)//9
 int ll_contains(LinkedList* this, void* pElement)
 {
     int returnAux = -1;
-    int i;
-    Node* auxNode = NULL;
-    int lenLL = ll_len(this);
     if(this != NULL){
-    	returnAux = 0;
-    	for(i=0;i<lenLL;i++){
-    		auxNode = getNode(this,i);
-    		if(auxNode->pElement == pElement){
-    			returnAux = 1;
-    			break;
-    		}
+    	if(ll_indexOf(this,pElement) == -1){
+    		returnAux = 0;
+    	}else{
+    		returnAux = 1;
     	}
     }
+
     return returnAux;
 }
 
@@ -548,7 +537,7 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
     if(this != NULL && (from >=0 && from < lenLL) && (to > from && to <= lenLL)){
     	cloneArray = ll_newLinkedList();
     	if(cloneArray != NULL){
-			for(i=from;i<=to;i++){
+			for(i=from;i<to;i++){
 				auxNode = getNode(this,i);
 				if(auxNode != NULL){
 					addNode(cloneArray,i,auxNode->pElement);
