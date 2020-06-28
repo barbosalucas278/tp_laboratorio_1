@@ -1,0 +1,6 @@
+23:37:26 **** Incremental Build of configuration Debug for project Ventas_de_articulos ****
+Info: Internal Builder is used for build
+gcc -o Ventas_de_articulos.exe "src\\Articulo.o" "src\\Distribuidora.o" "src\\LinkedList.o" "src\\main.o" "src\\parser.o" "src\\utn.o" "src\\validation.o" 
+
+23:37:27 Build Finished. 0 errors, 0 warnings. (took 352ms)
+
